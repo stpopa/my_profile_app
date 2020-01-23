@@ -10,7 +10,6 @@ class ContributorsScreen extends StatelessWidget {
 
   ContributorsScreen({this.repository});
 
-
   @override
   Widget build(BuildContext context) {
 

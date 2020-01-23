@@ -5,7 +5,6 @@ import '../models/contributor.dart';
 import '../models/user.dart';
 import 'open_contributors_cache_manager.dart';
 
-
 class InvalidResponseError extends StateError {
   InvalidResponseError(String msg) : super(msg);
 }
@@ -65,4 +64,3 @@ class GithubService {
     throw InvalidResponseError("The status code isn't 200");
   }
 }
-

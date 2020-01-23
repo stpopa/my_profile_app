@@ -111,15 +111,11 @@ class ContributorsBody extends StatelessWidget {
   }
 
   ContributorAccessory _accessoryFor(int index) {
-    switch (index) {
-      case 0:
-        return ContributorAccessory.first;
-      case 1:
-        return ContributorAccessory.top3;
-      case 2:
-        return ContributorAccessory.top3;
-      default:
-        return ContributorAccessory.none;
-    }
+    if (index == 0)
+      return ContributorAccessory.first;
+    else if (index > 0 && index < 3)
+      return ContributorAccessory.top3;
+    
+    return ContributorAccessory.none;
   }
 }
