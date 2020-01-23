@@ -40,3 +40,5 @@ Our mission is to make git history an absolute proof of work, and your work will
 - We do not want to force you some specific branching naming conventions. Take the repo, work with your preffered flow, Only the commits count.
 - You will have to get more familiar with `git reset` , `git ammend` commands, and  `remotes`.  ^_^
 - We do not have to mess with fancy github merge restrictions.
+
+Have fun developing!
