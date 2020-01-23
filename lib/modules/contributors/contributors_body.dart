@@ -115,7 +115,7 @@ class ContributorsBody extends StatelessWidget {
       return ContributorAccessory.first;
     else if (index > 0 && index < 3)
       return ContributorAccessory.top3;
-    
+
     return ContributorAccessory.none;
   }
 }
