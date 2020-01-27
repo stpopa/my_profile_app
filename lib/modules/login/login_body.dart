@@ -1,4 +1,6 @@
 import 'package:endava_profile_app/modules/login/components/form/login_form_body.dart';
+import 'package:endava_profile_app/modules/login/login_bloc.dart';
+import 'package:endava_profile_app/modules/login/models/login_credentials.dart';
 import 'package:endava_profile_app/themes/main_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -8,8 +10,9 @@ class LoginBody extends StatefulWidget {
 }
 
 class _LoginBodyState extends State<LoginBody> {
-  String email = '';
-  String password = '';
+//  String email = '';
+//  String password = '';
+  LoginBloc bloc = LoginBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +33,9 @@ class _LoginBodyState extends State<LoginBody> {
                 )),
             SafeArea(
               child: MainTheme(
-                child: Builder(
-                  builder: (context) {
+                child: StreamBuilder(
+                  stream: bloc.loginCredentiaStream,
+                  builder: (context, snapshot) {
                     return Padding(
                       padding: EdgeInsets.only(left: 32, top: 70, right: 32),
                       child: Container(
@@ -51,10 +55,14 @@ class _LoginBodyState extends State<LoginBody> {
                               ),
                               LoginForm(
                                 onMailChanged: (value) {
-                                  email = value;
+                                  bloc.eventSink.add(LoginEvent(
+                                      LoginEventType.email,
+                                      value: LoginCredentials(email: value)));
                                 },
                                 onPasswordChanged: (value) {
-                                  password = value;
+                                  bloc.eventSink.add(LoginEvent(
+                                      LoginEventType.password,
+                                      value: LoginCredentials(password: value)));
                                 },
                               ),
                               Expanded(
@@ -76,8 +84,8 @@ class _LoginBodyState extends State<LoginBody> {
                                     color: Theme.of(context).buttonColor,
                                     onPressed: () {
                                       if (_formKey.currentState.validate()) {
-                                        print(email);
-                                        print(password);
+                                        bloc.eventSink.add(LoginEvent(
+                                            LoginEventType.submit));
                                         Scaffold.of(context).showSnackBar(
                                             SnackBar(
                                                 backgroundColor:
