@@ -1,3 +1,4 @@
+import 'package:endava_profile_app/modules/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'modules/contributors/contributors_screen.dart';
 
@@ -17,7 +18,8 @@ class EndavaProfileApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (c) => ContributorsScreen(repository: 'stpopa/endava_profile_app'),
+        '/': (c) => LoginScreen(),
+        '/contributors': (c) => ContributorsScreen(repository: 'stpopa/endava_profile_app'),
       },
     );
   }
