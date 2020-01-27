@@ -24,6 +24,16 @@ flutter:
   assets:
     - assets/images/
 
+  fonts:
+    - family: SanFrancisco
+      fonts:
+        - asset: fonts/sf-pro-regular.ttf
+        - asset: fonts/sf-pro-bold.ttf
+          weight: 700
+        - asset: fonts/sf-pro-semibold.ttf
+          weight: 600
+
+
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

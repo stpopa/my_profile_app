@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'modules/contributors/contributors_screen.dart';
+import 'modules/login/login_screen.dart';
 
 void main() {
   runApp(EndavaProfileApp());
@@ -14,10 +15,12 @@ class EndavaProfileApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
+        fontFamily: "SanFrancisco"
       ),
       initialRoute: '/',
       routes: {
-        '/': (c) => ContributorsScreen(repository: 'stpopa/endava_profile_app'),
+        '/': (c) => LoginScreen(),
+        '/contributors': (c) => ContributorsScreen(repository: 'stpopa/endava_profile_app'),
       },
     );
   }
