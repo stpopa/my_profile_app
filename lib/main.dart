@@ -1,3 +1,4 @@
+import 'package:endava_profile_app/modules/common/components/constants.dart';
 import 'package:endava_profile_app/modules/contributors/contributors_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'modules/login/login_screen.dart';
 
 void main() {
-  runApp(EndavaProfileApp());
+  runApp(Constants(child: EndavaProfileApp()));
 }
 
 class EndavaProfileApp extends StatelessWidget {
