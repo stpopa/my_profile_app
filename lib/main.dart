@@ -16,27 +16,6 @@ class EndavaProfileApp extends StatelessWidget {
     ]);
     return MaterialApp(
       title: 'Endava Profile',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        accentColor: Color(0xffDE411B),
-        primaryColorLight: Color.fromARGB(255, 178, 178, 178),
-        primaryColorDark: Colors.black,
-        fontFamily: 'SFProDisplay',
-        textTheme: TextTheme(
-          display2: TextStyle(
-            color: Color(0xffDE411B),
-            fontWeight: FontWeight.w800,
-          ),
-          headline: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w800,
-          ),
-          subhead: TextStyle(
-            color: Color.fromARGB(255, 178, 178, 178),
-            fontWeight: FontWeight.w800,
-          ),
-        ),
-      ),
       initialRoute: '/login',
       routes: {
         '/': (c) => ContributorsScreen(repository: 'stpopa/endava_profile_app'),
