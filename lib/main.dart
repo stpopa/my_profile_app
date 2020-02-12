@@ -1,4 +1,5 @@
 import 'package:endava_profile_app/modules/contributors/contributors_screen.dart';
+import 'package:endava_profile_app/modules/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,6 +10,11 @@ void main() {
 }
 
 class EndavaProfileApp extends StatelessWidget {
+
+  static const String HOME = '/';
+  static const String LOGIN = '/login';
+  static const String CONTRIBUTORS = '/contributors';
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -37,10 +43,11 @@ class EndavaProfileApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: '/login',
+      initialRoute: LOGIN,
       routes: {
-        '/': (c) => ContributorsScreen(repository: 'stpopa/endava_profile_app'),
-        '/login': (c) => LoginScreen(),
+        CONTRIBUTORS: (c) => ContributorsScreen(repository: 'stpopa/endava_profile_app'),
+        LOGIN: (c) => LoginScreen(),
+        HOME: (c) => HomeScreen(),
       },
     );
   }

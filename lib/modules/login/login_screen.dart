@@ -1,3 +1,4 @@
+import 'package:endava_profile_app/main.dart';
 import 'package:endava_profile_app/modules/common/components/components.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class LoginScreen extends StatelessWidget {
             child: Button(
               label: 'Continue',
               onPressed: () {
-                print('pressed');
+                Navigator.pushNamed(context, EndavaProfileApp.HOME);
               },
             ),
           )

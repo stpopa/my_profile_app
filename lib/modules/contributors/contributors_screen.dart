@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'contributors_bloc.dart';
 import 'contributors_body.dart';
 import 'models/user.dart';
-import '../../themes/contributors_theme.dart';
+import '../../themes/app_theme.dart';
 
 class ContributorsScreen extends StatelessWidget {
   final String repository;
@@ -14,7 +14,7 @@ class ContributorsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: ContributorsTheme(
+      body: AppTheme(
         child: Provider<ContributorsBloc>(
           create: (context) => ContributorsBloc(repository: this.repository),
           dispose: (_, bloc) => bloc.dispose(),
