@@ -1,3 +1,4 @@
+import 'package:endava_profile_app/modules/common/constants/palette.dart';
 import 'package:flutter/material.dart';
 
 class MainTheme extends Theme {
@@ -8,12 +9,12 @@ class MainTheme extends Theme {
   @override
   ThemeData get data => super.data.copyWith(
         scaffoldBackgroundColor: Colors.white,
-        accentColor: Color(0xffDE411B),
-        primaryColorLight: Color.fromARGB(255, 178, 178, 178),
+        accentColor: Palette.cinnabar,
+        primaryColorLight: Palette.darkGray,
         primaryColorDark: Colors.black,
         textTheme: TextTheme(
           display2: TextStyle(
-            color: Color(0xffDE411B),
+            color: Palette.cinnabar,
             fontWeight: FontWeight.w800,
           ),
           headline: TextStyle(
@@ -21,7 +22,7 @@ class MainTheme extends Theme {
             fontWeight: FontWeight.w800,
           ),
           subhead: TextStyle(
-            color: Color.fromARGB(255, 178, 178, 178),
+            color: Palette.darkGray,
             fontWeight: FontWeight.w800,
           ),
         ).apply(fontFamily: 'SFProDisplay'),
