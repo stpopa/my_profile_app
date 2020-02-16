@@ -2,6 +2,7 @@ import 'package:endava_profile_app/modules/contributors/contributors_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'modules/home/home_screen.dart';
 import 'modules/login/login_screen.dart';
 
 void main() {
@@ -16,10 +17,11 @@ class EndavaProfileApp extends StatelessWidget {
     ]);
     return MaterialApp(
       title: 'Endava Profile',
-      initialRoute: '/login',
+      initialRoute: '/home',
       routes: {
         '/': (c) => ContributorsScreen(repository: 'stpopa/endava_profile_app'),
         '/login': (c) => LoginScreen(),
+        '/home': (c) => HomeScreen(),
       },
     );
   }
