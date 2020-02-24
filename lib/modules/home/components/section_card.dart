@@ -23,16 +23,21 @@ class SectionCard extends StatelessWidget {
         Scaffold.of(context).showSnackBar(snackBar);
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: Dimens.spacingSmall,
-        ),
-        child: Card(
-          elevation: Dimens.cardElevation,
-          child: Container(
-            width: double.infinity,
-            height: Dimens.sectionCardHeight,
-            child: _buildContent(),
-          ),
+        padding: const EdgeInsets.all(10),
+        child: Container(
+          width: double.infinity,
+          height: Dimens.sectionCardHeight,
+          child: _buildContent(),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(6)),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black12,
+                    offset: Offset.zero,
+                    blurRadius: 3,
+                    spreadRadius: 3)
+              ]),
         ),
       ),
     );

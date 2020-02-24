@@ -8,7 +8,7 @@ class MainTheme extends Theme {
 
   @override
   ThemeData get data => super.data.copyWith(
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Palette.wildSand,
         accentColor: Palette.cinnabar,
         primaryColorLight: Palette.darkGray,
         primaryColorDark: Colors.black,
