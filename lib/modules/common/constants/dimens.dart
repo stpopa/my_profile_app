@@ -18,7 +18,7 @@ class Dimens {
   static const double spacingHuge = 40.0;
 
   /// Elevation
-  static const double cardElevation = 6.0;
+  static const double cardElevation = 2.0;
 
   /// Font size
   static const double fontSizeMedium = 16.0;
