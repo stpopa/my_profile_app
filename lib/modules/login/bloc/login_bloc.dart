@@ -1,13 +1,20 @@
 import 'package:bloc/bloc.dart';
+import 'package:endava_profile_app/modules/auth/bloc/authentication_bloc.dart';
+import 'package:endava_profile_app/modules/auth/bloc/authentication_event.dart';
 import 'package:endava_profile_app/modules/login/bloc/bloc.dart';
+import 'package:endava_profile_app/services/auth_service.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  final AuthenticationBloc authenticationBloc;
+  final AuthService authService;
   final RegExp _emailRegExp = RegExp(
     r'^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$',
   );
   final RegExp _passwordRegExp = RegExp(
-    r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
+    r'^[A-Za-z\d@$!%*?&]{8,}$',
   );
+
+  LoginBloc(this.authenticationBloc, this.authService);
 
   @override
   LoginState get initialState => LoginState.initial();
@@ -19,17 +26,26 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   @override
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
-    if (event is EmailChanged) {
-      yield state.copyWith(isEmailValid: true);
-    }
-    if (event is PasswordChanged) {
-      yield state.copyWith(isPasswordValid: true);
-    }
     if (event is FormSubmitted) {
-      yield state.copyWith(
-        isEmailValid: _isEmailValid(event.email),
-        isPasswordValid: _isPasswordValid(event.password),
-      );
+      if (_isEmailValid(event.email) && _isPasswordValid(event.password)) {
+        yield LoginLoading();
+        try {
+          final token =
+              await authService.authenticate(event.email, event.password);
+          if (token == null) {
+            yield LoginFailure();
+          }
+          authenticationBloc.add(LoggedInEvent(token));
+          yield LoginState.initial();
+        } on InvalidResponseError catch (error) {
+          print(error.message);
+          yield LoginFailure();
+        }
+      } else {
+        yield LoginState.initial().copyWith(
+            isEmailValid: _isEmailValid(event.email),
+            isPasswordValid: _isPasswordValid(event.password));
+      }
     }
   }
 

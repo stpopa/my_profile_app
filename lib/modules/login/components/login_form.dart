@@ -19,16 +19,14 @@ class _LoginFormState extends State<LoginForm> {
   void initState() {
     super.initState();
     _loginBloc = BlocProvider.of<LoginBloc>(context);
-    _emailController.addListener(_onEmailChanged);
-    _passwordController.addListener(_onPasswordChanged);
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
-        if (state.isFormSubmitted) {
-          print('Form submitted');
+        if (state is LoginFailure) {
+          _showLoginFailure(context);
         }
         return Form(
           child: Column(
@@ -77,14 +75,6 @@ class _LoginFormState extends State<LoginForm> {
     super.dispose();
   }
 
-  void _onEmailChanged() {
-    _loginBloc.add(EmailChanged());
-  }
-
-  void _onPasswordChanged() {
-    _loginBloc.add(PasswordChanged());
-  }
-
   void _onContinuePressed() {
     _loginBloc.add(
       FormSubmitted(
@@ -92,5 +82,16 @@ class _LoginFormState extends State<LoginForm> {
         password: _passwordController.text,
       ),
     );
+  }
+
+  void _showLoginFailure(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Incorrect login or password'),
+          backgroundColor: Theme.of(context).accentColor,
+        ),
+      );
+    });
   }
 }

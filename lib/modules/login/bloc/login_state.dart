@@ -25,7 +25,7 @@ class LoginState extends Equatable {
   LoginState copyWith({
     bool isEmailValid,
     bool isPasswordValid,
-    bool formSubmittedSuccessfully,
+    bool isFormSubmitted,
   }) {
     return LoginState(
       isEmailValid: isEmailValid ?? this.isEmailValid,
@@ -45,4 +45,14 @@ class LoginState extends Equatable {
       isFormSubmitted: $isFormSubmitted
     }''';
   }
+}
+
+class LoginLoading extends LoginState {
+  LoginLoading()
+      : super(isEmailValid: true, isPasswordValid: true, isFormSubmitted: true);
+}
+
+class LoginFailure extends LoginState {
+  LoginFailure()
+      : super(isEmailValid: true, isPasswordValid: true, isFormSubmitted: true);
 }
