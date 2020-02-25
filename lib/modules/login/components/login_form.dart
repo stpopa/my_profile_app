@@ -1,5 +1,6 @@
 import 'package:endava_profile_app/modules/common/components/button.dart';
 import 'package:endava_profile_app/modules/common/components/text_input.dart';
+import 'package:endava_profile_app/modules/common/constants/dimens.dart';
 import 'package:endava_profile_app/modules/login/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +43,7 @@ class _LoginFormState extends State<LoginForm> {
                     validator: (_) =>
                         state.isEmailValid ? null : 'Invalid email',
                   ),
-                  SizedBox(height: 20.0),
+                  SizedBox(height: Dimens.spacingLarge),
                   TextInput(
                     hintText: 'Password',
                     obscureText: true,
