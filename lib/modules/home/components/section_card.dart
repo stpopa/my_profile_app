@@ -1,5 +1,8 @@
-import 'package:endava_profile_app/modules/common/constants/dimens.dart';
-import 'package:endava_profile_app/modules/home/components/section_content.dart';
+import 'package:endava_profile_app/common/constants/dimens.dart';
+import 'package:endava_profile_app/modules/home/components/content/section_content.dart';
+import 'package:endava_profile_app/modules/home/components/content/user_content.dart';
+import 'package:endava_profile_app/modules/home/components/content/skills_content.dart';
+import 'package:endava_profile_app/modules/home/components/content/portfolio_content.dart';
 import 'package:endava_profile_app/modules/home/models/content_item.dart';
 import 'package:endava_profile_app/modules/home/models/placeholder_item.dart';
 import 'package:endava_profile_app/modules/home/models/section_list_item.dart';
@@ -45,13 +48,15 @@ class SectionCard extends StatelessWidget {
 
   Widget _buildContent() {
     if (section is ContentItem) {
-      return SectionContent(
-        content: section as ContentItem,
-      );
+      return SectionContent(content: section);
+    } else if(section is UserItem) {
+      return UserContent(item: section);
+    } else if(section is SkillsItem) {
+      return SkillsContent(content: section);
+    } else if(section is PortfolioItem) {
+      return PortfolioContent(content: section);
+    } else {
+      return SectionPlaceholder(placeholder: section);
     }
-
-    return SectionPlaceholder(
-      placeholder: section as PlaceholderItem,
-    );
   }
 }

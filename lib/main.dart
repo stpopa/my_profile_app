@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'modules/auth/bloc/authentication_bloc.dart';
 import 'modules/auth/bloc/authentication_event.dart';
-import 'modules/common/constants.dart';
+import 'common/constants.dart';
 import 'modules/home/home_screen.dart';
 import 'modules/login/login_screen.dart';
 
@@ -30,18 +30,17 @@ class EndavaProfileApp extends StatelessWidget {
     return MaterialApp(
       title: 'Endava Profile',
       routes: {
-        Paths.LOGIN: (c) => LoginScreen(),
-        Paths.CONTRIBUTORS: (c) =>
+        AppRoute.of(AppScreen.login): (c) => LoginScreen(),
+        AppRoute.of(AppScreen.contributors): (c) =>
             ContributorsScreen(repository: 'stpopa/endava_profile_app'),
       },
+//      initialRoute: AppRoute.of(AppScreen.home),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           if (state is AuthenticatedState) {
             return HomeScreen();
           }
-//          if (state is UnauthenticatedState) {
           return LoginScreen();
-//          }
         },
       ),
     );

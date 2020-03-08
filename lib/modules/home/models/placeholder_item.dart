@@ -1,7 +1,7 @@
 import 'section_list_item.dart';
 
 class PlaceholderItem implements SectionListItem {
-  final String key;
+  String key;
   final String title;
   final String icon;
 

@@ -1,1 +1,3 @@
-abstract class SectionListItem {}
+abstract class SectionListItem {
+  String key;
+}

@@ -4,6 +4,7 @@ class Dimens {
   /// Size
   static const double sectionCardHeight = 166.0;
   static const double sectionIconWidth = 48.0;
+  static const double sectionContentIconWidth = 26.0;
   static const double sectionArrowWidth = 22.0;
   static const double circularButtonHeight = 80.0;
   static const double circularButtonIconSize = 30.0;

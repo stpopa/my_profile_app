@@ -1,5 +1,5 @@
-import 'package:endava_profile_app/modules/common/constants/dimens.dart';
-import 'package:endava_profile_app/modules/common/constants/palette.dart';
+import 'package:endava_profile_app/common/constants/dimens.dart';
+import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
