@@ -27,7 +27,7 @@ class AuthenticationBloc
 
     if (event is LoggedInEvent) {
       // todo persist token
-      print ('persisting token ${event.token}');
+      print('persisting token ${event.token}');
       yield AuthenticatedState();
     }
 

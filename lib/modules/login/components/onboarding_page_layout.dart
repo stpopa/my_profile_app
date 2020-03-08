@@ -1,7 +1,7 @@
 import 'package:endava_profile_app/themes/main_theme.dart';
 import 'package:flutter/material.dart';
 
-import 'components.dart';
+import 'package:endava_profile_app/modules/login/components/components.dart';
 
 class OnboardingPageLayout extends StatelessWidget {
   final Widget child;
