@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:convert' as convert;
-import 'package:http/http.dart' as http;
-import 'package:endava_profile_app/models/item.dart';
+
 import 'package:endava_profile_app/models/api_response.dart';
-import 'auth_service.dart';
+import 'package:endava_profile_app/models/item.dart';
+import 'package:flutter_keychain/flutter_keychain.dart';
+import 'package:http/http.dart' as http;
 
 class InvalidResponseError extends StateError {
   InvalidResponseError(String msg) : super(msg);
@@ -18,10 +19,19 @@ class ItemService {
     ItemPath.items: "/v1/items"
   };
 
-  final headers = {
-    'Content-Type': 'application/json',
-    'Authorization': AuthService.authToken
-  };
+  _getItemHeaders() async {
+    Map<String, String> headers = {'Content-Type': 'application/json'};
+
+    String authToken = await FlutterKeychain.get(key: 'authToken');
+
+    if (authToken == '') {
+      throw InvalidResponseError('User not autheticated');
+    } else {
+      headers.addAll({'Authorization': authToken});
+    }
+
+    return headers;
+  }
 
   Future<Item> add(Item item) async {
     final url = BASE_URL + paths[ItemPath.item];
@@ -29,7 +39,8 @@ class ItemService {
     // Converts object to string
     String jsonString = convert.jsonEncode(item);
 
-    final response = await http.post(url, headers: headers, body: jsonString);
+    final response = await http.post(url,
+        headers: await _getItemHeaders(), body: jsonString);
 
     return _parseSingleItemIn(response);
   }
@@ -37,7 +48,16 @@ class ItemService {
   Future<Item> delete(Item item) async {
     final url = BASE_URL + paths[ItemPath.item] + '/${item.key}';
 
-    final response = await http.delete(url, headers: headers);
+    final response = await http.delete(url, headers: await _getItemHeaders());
+
+    return _parseSingleItemIn(response);
+  }
+
+  Future<Item> post(String updatedItem) async {
+    final url = BASE_URL + paths[ItemPath.item];
+
+    final response = await http.post(url,
+        headers: await _getItemHeaders(), body: updatedItem);
 
     return _parseSingleItemIn(response);
   }
@@ -45,7 +65,7 @@ class ItemService {
   Future<Item> get(Item item) async {
     final url = BASE_URL + paths[ItemPath.item] + '/${item.key}';
 
-    final response = await http.get(url, headers: headers);
+    final response = await http.get(url, headers: await _getItemHeaders());
 
     return _parseSingleItemIn(response);
   }
@@ -53,7 +73,7 @@ class ItemService {
   Future<List<Item>> getAll() async {
     final url = BASE_URL + paths[ItemPath.items];
 
-    final response = await http.get(url, headers: headers);
+    final response = await http.get(url, headers: await _getItemHeaders());
 
     return _parseMultipleItemsIn(response);
   }
@@ -61,7 +81,7 @@ class ItemService {
   Future<List<Item>> deleteAll() async {
     final url = BASE_URL + paths[ItemPath.items];
 
-    final response = await http.delete(url, headers: headers);
+    final response = await http.delete(url, headers: await _getItemHeaders());
 
     return _parseMultipleItemsIn(response);
   }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'home_body.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'bloc/bloc.dart';
+import 'home_body.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

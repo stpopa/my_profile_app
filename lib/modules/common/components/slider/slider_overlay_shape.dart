@@ -1,4 +1,4 @@
-import 'package:endava_profile_app/modules/common/constants/dimens.dart';
+import 'package:endava_profile_app/common/constants/dimens.dart';
 import 'package:flutter/material.dart';
 
 class SliderOverlayShape extends SliderComponentShape {

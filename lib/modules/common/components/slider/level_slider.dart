@@ -1,5 +1,5 @@
-import 'package:endava_profile_app/modules/common/constants/dimens.dart';
-import 'package:endava_profile_app/modules/common/constants/palette.dart';
+import 'package:endava_profile_app/common/constants/dimens.dart';
+import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:flutter/material.dart';
 
 import 'slider_overlay_shape.dart';
@@ -10,8 +10,12 @@ enum Level { Beginner, Intermediate, Professional }
 
 class LevelSlider extends StatefulWidget {
   final int level;
+  final Function(int selectedLevel) onSkillUpdatePressed;
 
-  LevelSlider({@required this.level});
+  LevelSlider({
+    @required this.level,
+    @required this.onSkillUpdatePressed,
+  });
 
   @override
   _LevelSliderState createState() => _LevelSliderState();
@@ -70,8 +74,12 @@ class _LevelSliderState extends State<LevelSlider> {
   }
 
   _onChanged(double level) {
-    setState(() {
-      _selectedLevel = level;
-    });
+    if (this.mounted) {
+      setState(() {
+        _selectedLevel = level;
+      });
+    }
+
+    widget.onSkillUpdatePressed(_selectedLevel.toInt());
   }
 }
