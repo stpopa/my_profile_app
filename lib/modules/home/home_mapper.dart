@@ -1,7 +1,9 @@
-import 'models/content_item.dart';
-import 'models/section_list_item.dart';
-import 'models/home_category.dart';
+import 'package:endava_profile_app/modules/core_skills/models/skill_category.dart';
+
 import 'bloc/bloc.dart';
+import 'models/content_item.dart';
+import 'models/home_category.dart';
+import 'models/section_list_item.dart';
 
 class HomeMapper {
   static List<SectionListItem> map({HomeSuccessResponse response}) {
@@ -14,7 +16,7 @@ class HomeMapper {
 
     response.items.forEach((item) {
       final category = HomeCategoryData.categoryFor(item.key);
-      switch(category) {
+      switch (category) {
         case HomeCategory.summary:
           // Map to created models...
           String value = item.value['value'];
@@ -42,8 +44,18 @@ class HomeMapper {
           break;
 
         case HomeCategory.skills:
-        // Map to created models...
-          List<dynamic> skills = item.value['skills'];
+          var skills = List.from(item.value)
+              .map((category) => SkillCategory.fromJson(category))
+              .fold<List<String>>(
+            [],
+            (result, category) {
+              return result
+                ..addAll(
+                  category.skills.map((skill) => skill.title),
+                );
+            },
+          ).toList();
+
           contentItems.add(
             SkillsItem(
               key: HomeCategoryData.keyFor(category),
@@ -55,7 +67,7 @@ class HomeMapper {
           break;
 
         case HomeCategory.education:
-        // Map to created models...
+          // Map to created models...
           String value = item.value['education'];
           contentItems.add(
             ContentItem(
@@ -83,8 +95,6 @@ class HomeMapper {
         default:
           break;
       }
-
-
     });
 
     return contentItems;

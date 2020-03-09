@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert' as convert;
-import 'package:http/http.dart' as http;
-import 'package:endava_profile_app/models/user.dart';
+
 import 'package:endava_profile_app/models/api_response.dart';
+import 'package:endava_profile_app/models/user.dart';
+import 'package:flutter_keychain/flutter_keychain.dart';
+import 'package:http/http.dart' as http;
 
 class InvalidResponseError extends StateError {
   InvalidResponseError(String msg) : super(msg);
@@ -18,8 +20,6 @@ class AuthService {
     AuthPath.me: "/v1/me",
   };
 
-  static String authToken = '';
-
   Map<String, String> headers = {'Content-Type': 'application/json'};
 
   Future<String> authenticate(String email, String password) async {
@@ -33,8 +33,8 @@ class AuthService {
     if (response.statusCode == 200) {
       Map<String, dynamic> parsedResponse = convert.json.decode(response.body);
 
-      // Save this somewhere in keychain if you want to keep the user logged in
-      AuthService.authToken = parsedResponse['auth_token'];
+      var authToken = parsedResponse['auth_token'];
+      await FlutterKeychain.put(key: 'authToken', value: authToken);
 
       return authToken;
     }
@@ -61,6 +61,8 @@ class AuthService {
 
   Future<User> me() async {
     final url = BASE_URL + paths[AuthPath.me];
+
+    String authToken = await FlutterKeychain.get(key: 'authToken');
 
     if (authToken == '')
       throw InvalidResponseError("User not autheticated");

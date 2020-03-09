@@ -1,19 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'item.dart';
+part of 'skills_request_content.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Item _$ItemFromJson(Map<String, dynamic> json) {
-  return Item(
+SkillsRequestContent _$SkillsRequestContentFromJson(Map<String, dynamic> json) {
+  return SkillsRequestContent(
     key: json['key'] as String,
     value: json['value'],
   );
 }
 
-Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
+Map<String, dynamic> _$SkillsRequestContentToJson(
+        SkillsRequestContent instance) =>
+    <String, dynamic>{
       'key': instance.key,
       'value': instance.value,
     };

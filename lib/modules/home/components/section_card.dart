@@ -12,18 +12,17 @@ import 'section_placeholder.dart';
 
 class SectionCard extends StatelessWidget {
   final SectionListItem section;
+  final Function(String key) onTap;
 
   SectionCard({
-    this.section,
+    @required this.onTap,
+    @required this.section,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        final snackBar = SnackBar(content: Text('Tap'));
-        Scaffold.of(context).showSnackBar(snackBar);
-      },
+      onTap: () => onTap(section.key),
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Container(

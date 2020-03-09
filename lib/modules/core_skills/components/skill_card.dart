@@ -1,17 +1,31 @@
+import 'package:endava_profile_app/common/constants/dimens.dart';
+import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/modules/common/components/slider/level_slider.dart';
-import 'package:endava_profile_app/modules/common/constants/dimens.dart';
-import 'package:endava_profile_app/modules/common/constants/palette.dart';
+import 'package:endava_profile_app/modules/core_skills/bloc/bloc.dart';
 import 'package:endava_profile_app/modules/core_skills/models/skill.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/components/confirmation_dialog.dart';
 
-class SkillCard extends StatelessWidget {
+class SkillCard extends StatefulWidget {
   final Skill skill;
 
-  SkillCard({
-    @required this.skill,
-  });
+  SkillCard({@required this.skill});
+
+  @override
+  _SkillCardState createState() => _SkillCardState();
+}
+
+class _SkillCardState extends State<SkillCard> {
+  SkillsBloc _skillsBloc;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _skillsBloc = BlocProvider.of<SkillsBloc>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +49,8 @@ class SkillCard extends StatelessWidget {
           ),
           child: Row(
             children: <Widget>[
-              Image.asset(
-                skill.icon,
+              Image.network(
+                widget.skill.icon,
                 width: Dimens.skillIconSize,
                 height: Dimens.skillIconSize,
               ),
@@ -55,7 +69,7 @@ class SkillCard extends StatelessWidget {
                         children: <Widget>[
                           Expanded(
                             child: Text(
-                              skill.title,
+                              widget.skill.title,
                               style: Theme.of(context)
                                   .textTheme
                                   .title
@@ -71,14 +85,17 @@ class SkillCard extends StatelessWidget {
                             onTap: () => showDialog(
                               context: context,
                               builder: (BuildContext context) =>
-                                  ConfirmationDialog(),
+                                  ConfirmationDialog(
+                                onConfirmPressed: _onSkillDeletePressed,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
                     LevelSlider(
-                      level: skill.level,
+                      level: widget.skill.level,
+                      onSkillUpdatePressed: onSkillUpdatePressed,
                     ),
                   ],
                 ),
@@ -87,6 +104,21 @@ class SkillCard extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  void _onSkillDeletePressed() {
+    _skillsBloc.add(
+      Delete(skillId: widget.skill.id),
+    );
+  }
+
+  void onSkillUpdatePressed(int selectedLevel) {
+    _skillsBloc.add(
+      Update(
+        skillId: widget.skill.id,
+        skillLevel: selectedLevel,
+      ),
     );
   }
 }
