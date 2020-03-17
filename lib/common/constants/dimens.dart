@@ -23,7 +23,9 @@ class Dimens {
   static const double spacingSmall = 12.0;
   static const double spacingMedium = 16.0;
   static const double spacingLarge = 20.0;
+  static const double spacingXLarge = 30.0;
   static const double spacingHuge = 40.0;
+  static const double spacingXHuge = 60.0;
 
   /// Elevation
   static const double cardBorderRadius = 8.0;
