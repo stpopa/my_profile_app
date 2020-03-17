@@ -3,6 +3,7 @@ class Paths {
   static const String LOGIN = '/login';
   static const String CONTRIBUTORS = '/contributors';
   static const String skills = '/skills';
+  static const String SUMMARY_SCREEN = '/summary_screen';
 }
 
 class Categories {
