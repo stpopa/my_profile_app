@@ -1,5 +1,5 @@
-import 'package:endava_profile_app/modules/common/constants/dimens.dart';
-import 'package:endava_profile_app/modules/common/constants/palette.dart';
+import 'package:endava_profile_app/common/constants/dimens.dart';
+import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/modules/summary/bloc/edit_content_event.dart';
 import 'package:endava_profile_app/modules/summary/bloc/summary_content_bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,6 +38,7 @@ class _ContentInputState extends State<ContentInput> {
             style: Theme.of(context).textTheme.body1,
             maxLines: null,
             controller: _inputFieldController,
+            autofocus: false,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: widget.hintText,
