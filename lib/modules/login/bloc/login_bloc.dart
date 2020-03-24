@@ -34,9 +34,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               await authService.authenticate(event.email, event.password);
           if (token == null) {
             yield LoginFailure();
+          } else {
+            authenticationBloc.add(LoggedInEvent(token));
+            yield LoginState.initial();
           }
-          authenticationBloc.add(LoggedInEvent(token));
-          yield LoginState.initial();
         } on InvalidResponseError catch (error) {
           print(error.message);
           yield LoginFailure();
