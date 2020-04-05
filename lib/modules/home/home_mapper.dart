@@ -1,3 +1,4 @@
+import 'bloc/bloc.dart';
 import 'package:endava_profile_app/modules/core_skills/models/skill_category.dart';
 
 import 'bloc/bloc.dart';
@@ -16,32 +17,33 @@ class HomeMapper {
 
     response.items.forEach((item) {
       final category = HomeCategoryData.categoryFor(item.key);
-      switch (category) {
-        case HomeCategory.summary:
+      if (null != category) {
+        switch (category) {
+          case HomeCategory.summary:
           // Map to created models...
-          String value = item.value['value'];
-          contentItems.add(
-            ContentItem(
-              key: HomeCategoryData.keyFor(category),
-              value: value,
-              icon: HomeCategoryData.assetFor(category),
-              title: HomeCategoryData.titleFor(category),
-            ),
-          );
-          break;
+            String value = item.value['value'];
+            contentItems.add(
+              ContentItem(
+                key: HomeCategoryData.keyFor(category),
+                value: value,
+                icon: HomeCategoryData.assetFor(category),
+                title: HomeCategoryData.titleFor(category),
+              ),
+            );
+            break;
 
-        case HomeCategory.experience:
+          case HomeCategory.experience:
           // Map to created models...
-          String value = item.value['value'];
-          contentItems.add(
-            ContentItem(
-              key: HomeCategoryData.keyFor(category),
-              value: value,
-              icon: HomeCategoryData.assetFor(category),
-              title: HomeCategoryData.titleFor(category),
-            ),
-          );
-          break;
+            String value = item.value['value'];
+            contentItems.add(
+              ContentItem(
+                key: HomeCategoryData.keyFor(category),
+                value: value,
+                icon: HomeCategoryData.assetFor(category),
+                title: HomeCategoryData.titleFor(category),
+              ),
+            );
+            break;
 
         case HomeCategory.skills:
           var skills = List.from(item.value)
@@ -66,34 +68,35 @@ class HomeMapper {
           );
           break;
 
-        case HomeCategory.education:
+          case HomeCategory.education:
           // Map to created models...
-          String value = item.value['education'];
-          contentItems.add(
-            ContentItem(
-              key: HomeCategoryData.keyFor(category),
-              value: value,
-              icon: HomeCategoryData.assetFor(category),
-              title: HomeCategoryData.titleFor(category),
-            ),
-          );
-          break;
+            String value = item.value['education'];
+            contentItems.add(
+              ContentItem(
+                key: HomeCategoryData.keyFor(category),
+                value: value,
+                icon: HomeCategoryData.assetFor(category),
+                title: HomeCategoryData.titleFor(category),
+              ),
+            );
+            break;
 
-        case HomeCategory.portfolio:
+          case HomeCategory.portfolio:
           // Map to created models...
-          String value = item.value['portfolio'];
-          contentItems.add(
-            PortfolioItem(
-              key: HomeCategoryData.keyFor(category),
-              value: value,
-              icon: HomeCategoryData.assetFor(category),
-              title: HomeCategoryData.titleFor(category),
-            ),
-          );
-          break;
+            String value = item.value['portfolio'];
+            contentItems.add(
+              PortfolioItem(
+                key: HomeCategoryData.keyFor(category),
+                value: value,
+                icon: HomeCategoryData.assetFor(category),
+                title: HomeCategoryData.titleFor(category),
+              ),
+            );
+            break;
 
-        default:
-          break;
+          default:
+            break;
+        }
       }
     });
 

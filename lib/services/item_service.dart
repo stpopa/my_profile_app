@@ -90,7 +90,10 @@ class ItemService {
     if (response.statusCode == 200) {
       List<dynamic> jsonItems = convert.jsonDecode(response.body)['data'];
 
-      return jsonItems.map((i) => Item.fromJson(i)).toList();
+      return jsonItems
+          .map((i) => _getItemFromJson(i))
+          .where((v) => null != v)
+          .toList();
     }
 
     throw InvalidResponseError(response.body);
@@ -108,5 +111,14 @@ class ItemService {
     }
 
     throw InvalidResponseError(response.body);
+  }
+
+  Item _getItemFromJson(i) {
+    try {
+      return Item.fromJson(i);
+    } catch (e) {
+      print("Cannot convert $i");
+      return null;
+    }
   }
 }

@@ -36,7 +36,7 @@ class HomeCategoryData {
   };
 
   static HomeCategory categoryFor(String key) {
-    return _keys.keys.firstWhere((k) => _keys[k] == key, orElse: null);
+    return _keys.keys.firstWhere((k) => _keys[k] == key, orElse: () => null);
   }
 
   static String titleFor(HomeCategory category) {

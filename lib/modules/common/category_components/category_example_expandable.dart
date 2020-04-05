@@ -5,11 +5,12 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ExampleExpandable extends StatelessWidget {
+class CategoryExampleExpandable extends StatelessWidget {
   final exampleTitle;
   final exampleText;
 
-  const ExampleExpandable({Key key, this.exampleTitle, this.exampleText})
+  const CategoryExampleExpandable(
+      {Key key, this.exampleTitle, this.exampleText})
       : super(key: key);
 
   @override
@@ -38,7 +39,8 @@ class ExampleExpandable extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(
                       Dimens.spacingMedium, 0.0, Dimens.spacingMedium, 0.0),
-                  child: Text(exampleTitle,
+                  child: Text(
+                    exampleTitle,
                     style: Theme.of(context).textTheme.subtitle.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w600),
                   ),
@@ -56,7 +58,8 @@ class ExampleExpandable extends StatelessWidget {
           expanded: Padding(
               padding: const EdgeInsets.fromLTRB(Dimens.spacingXHuge, 0.0,
                   Dimens.spacingXSmall, Dimens.spacingLarge),
-              child: Text(exampleText,
+              child: Text(
+                exampleText,
                 style: Theme.of(context).textTheme.subtitle.copyWith(
                     fontSize: Dimens.fontSizeMedium, color: Palette.grayBlack),
               )),
