@@ -1,33 +1,38 @@
 import 'package:endava_profile_app/common/constants/dimens.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
-import 'package:endava_profile_app/modules/summary/bloc/summary_content_bloc.dart';
-import 'package:endava_profile_app/modules/summary/bloc/summary_content_state.dart';
+import 'package:endava_profile_app/modules/common/category_bloc/category_bloc.dart';
+import 'package:endava_profile_app/modules/common/category_bloc/category_event.dart';
+import 'package:endava_profile_app/modules/common/category_bloc/category_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CategoryHeader extends StatefulWidget {
+class CategoryHeader<B extends Bloc<dynamic, dynamic>, S extends State> extends
+StatefulWidget {
   final String title;
   final String subtitle;
 
-  const CategoryHeader({Key key, this.title, this.subtitle})
-      : super(key: key);
+  const CategoryHeader({Key key, this.title, this.subtitle}) : super(key: key);
 
   @override
   _CategoryHeaderState createState() => _CategoryHeaderState();
 }
 
 class _CategoryHeaderState extends State<CategoryHeader> {
+  CategoryBloc _categoryBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _categoryBloc = BlocProvider.of<CategoryBloc>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
-     return BlocBuilder<SummaryContentBloc, SummaryContentState>(
+    return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.fromLTRB(
-              Dimens.spacingSmall,
-              Dimens.spacingXLarge,
-              Dimens.spacingSmall,
-              Dimens.spacingSmall),
+          padding: EdgeInsets.fromLTRB(Dimens.spacingSmall,
+              Dimens.spacingXLarge, Dimens.spacingSmall, Dimens.spacingSmall),
           child: Column(children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,7 +46,8 @@ class _CategoryHeaderState extends State<CategoryHeader> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.of(context).pop();
+                    _categoryBloc.add(CategorySaving());
+                    Navigator.pop(context);
                   },
                 ),
                 Text(
@@ -49,7 +55,7 @@ class _CategoryHeaderState extends State<CategoryHeader> {
                   style: Theme.of(context).textTheme.headline,
                 ),
                 Visibility(
-                  visible: !state.isEmpty,
+                  visible: state.isEdited,
                   maintainState: true,
                   maintainAnimation: true,
                   maintainSize: true,
@@ -63,10 +69,7 @@ class _CategoryHeaderState extends State<CategoryHeader> {
                       ),
                     ),
                     onTap: () {
-                      // post to api
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text('api call here'),
-                      ));
+                      _categoryBloc.add(CategorySaving());
                     },
                   ),
                 )

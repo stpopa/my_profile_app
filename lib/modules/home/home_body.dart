@@ -60,7 +60,7 @@ class _HomeBodyState extends State<HomeBody> {
   void initState() {
     super.initState();
 
-    _bloc = BlocProvider.of<HomeBloc>(context)..add(ScreenLoaded());
+    _bloc = BlocProvider.of<HomeBloc>(context);
   }
 
   @override
