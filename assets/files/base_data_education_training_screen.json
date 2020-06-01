@@ -1,0 +1,19 @@
+{
+  "qualifications": {
+    "title": "Qualifications:",
+    "example": "Bachelor’s degree in engineering, Technical University of Moldova, 2006 – 2010",
+    "hint": "Add qualifications summary",
+    "items": []
+  },
+  "certificates": {
+    "title": "Courses/ Trainings:",
+    "example": "Sitecore Developer Foundations for Sitecore CMS 6.5, 2013",
+    "hint": "Add a course/training",
+    "items": []
+  },
+  "languages": {
+    "title": "Languages",
+    "example": "Romanian (Fluent), Russian (Fluent), English (Intermediate)",
+    "items": []
+  }
+}
