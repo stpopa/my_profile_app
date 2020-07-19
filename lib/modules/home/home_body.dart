@@ -132,19 +132,32 @@ class _HomeBodyState extends State<HomeBody> {
   _onSectionCardTap(String key) {
     switch (key) {
       case 'skills':
-        _navigateTo(CoreSkillsScreen());
+        _navigateToSkills(CoreSkillsScreen());
         break;
       case 'summary':
-        _navigateTo(SummaryScreen());
+        _navigateToCategory(SummaryScreen());
         break;
     }
   }
 
-  _navigateTo(Widget widget) {
-    Navigator.of(context).push(
+  void _navigateToSkills(Widget widget) {
+    Navigator.of(context)
+        .pushReplacement(
       MaterialPageRoute(
         builder: (context) => widget,
       ),
     );
+  }
+
+  _navigateToCategory(Widget widget) {
+    Navigator.of(context)
+        .push(
+      MaterialPageRoute(
+        builder: (context) => widget,
+      ),
+    )
+        .then((item) => {
+      if (item != null) {_bloc.add(Reload(item))}
+    });
   }
 }

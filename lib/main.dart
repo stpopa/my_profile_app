@@ -1,4 +1,3 @@
-import 'package:endava_profile_app/data/user_repository.dart';
 import 'package:endava_profile_app/modules/auth/bloc/authentication_state.dart';
 import 'package:endava_profile_app/modules/contributors/contributors_screen.dart';
 import 'package:endava_profile_app/modules/core_skills/core_skills_screen.dart';
@@ -15,10 +14,9 @@ import 'modules/home/home_screen.dart';
 import 'modules/login/login_screen.dart';
 
 void main() {
-  final userRepository = UserRepository();
   runApp(BlocProvider<AuthenticationBloc>(
       create: (context) {
-        return AuthenticationBloc(userRepository: userRepository)
+        return AuthenticationBloc()
           ..add(AppStartedEvent());
       },
       child: EndavaProfileApp()));
@@ -39,7 +37,6 @@ class EndavaProfileApp extends StatelessWidget {
         AppRoute.of(AppScreen.coreSkills): (c) => CoreSkillsScreen(),
         AppRoute.of(AppScreen.summary): (c) => SummaryScreen(),
       },
-//      initialRoute: AppRoute.of(AppScreen.home),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           if (state is AuthenticatedState) {

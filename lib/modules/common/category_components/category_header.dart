@@ -6,8 +6,8 @@ import 'package:endava_profile_app/modules/common/category_bloc/category_state.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CategoryHeader<B extends Bloc<dynamic, dynamic>, S extends State> extends
-StatefulWidget {
+class CategoryHeader<B extends Bloc<dynamic, dynamic>, S extends State>
+    extends StatefulWidget {
   final String title;
   final String subtitle;
 
@@ -47,7 +47,7 @@ class _CategoryHeaderState extends State<CategoryHeader> {
                   ),
                   onTap: () {
                     _categoryBloc.add(CategorySaving());
-                    Navigator.pop(context);
+                    Navigator.pop(context, state.data);
                   },
                 ),
                 Text(

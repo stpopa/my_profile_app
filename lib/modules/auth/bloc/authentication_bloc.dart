@@ -1,15 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:endava_profile_app/data/user_repository.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter_keychain/flutter_keychain.dart';
 
 import 'authentication_event.dart';
 import 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final UserRepository userRepository;
-
-  AuthenticationBloc({@required this.userRepository});
 
   @override
   AuthenticationState get initialState => UnauthenticatedState();
@@ -18,7 +14,7 @@ class AuthenticationBloc
   Stream<AuthenticationState> mapEventToState(
       AuthenticationEvent event) async* {
     if (event is AppStartedEvent) {
-      if (await userRepository.hasToken()) {
+      if (await _hasToken()) {
         yield AuthenticatedState();
       } else {
         yield UnauthenticatedState();
@@ -26,8 +22,6 @@ class AuthenticationBloc
     }
 
     if (event is LoggedInEvent) {
-      // todo persist token
-      print('persisting token ${event.token}');
       yield AuthenticatedState();
     }
 
@@ -35,5 +29,9 @@ class AuthenticationBloc
       // todo delete token
       yield UnauthenticatedState();
     }
+  }
+
+  Future<bool> _hasToken() async {
+    return (await FlutterKeychain.get(key: 'authToken') != null);
   }
 }
