@@ -5,7 +5,7 @@ part 'item.g.dart';
 @JsonSerializable(nullable: true)
 class Item {
   String key;
-  dynamic value;
+  Map<String, dynamic> value;
 
   Item({
     this.key,

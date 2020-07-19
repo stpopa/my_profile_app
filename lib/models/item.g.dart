@@ -9,7 +9,7 @@ part of 'item.dart';
 Item _$ItemFromJson(Map<String, dynamic> json) {
   return Item(
     key: json['key'] as String,
-    value: json['value'],
+    value: json['value'] as Map<String, dynamic>,
   );
 }
 

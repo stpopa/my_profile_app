@@ -1,4 +1,4 @@
-import 'package:endava_profile_app/common/constants/palette.dart';
+import 'package:endava_profile_app/modules/common/constants/palette.dart';
 import 'package:flutter/material.dart';
 
 class HeaderShape extends StatelessWidget {

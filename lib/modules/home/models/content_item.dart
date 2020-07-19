@@ -1,5 +1,5 @@
-import '../../../models/user.dart';
 import 'section_list_item.dart';
+import '../../../models/user.dart';
 
 class ContentItem implements SectionListItem {
   String key;
@@ -34,3 +34,4 @@ class PortfolioItem implements SectionListItem {
 
   PortfolioItem({this.key, this.value, this.title, this.icon});
 }
+

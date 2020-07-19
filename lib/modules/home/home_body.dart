@@ -1,17 +1,16 @@
-import 'package:endava_profile_app/common/components/flutter_team.dart';
-import 'package:endava_profile_app/common/components/profile_app_bar.dart';
+import 'package:flutter/material.dart';
 import 'package:endava_profile_app/common/constants/dimens.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
-import 'package:endava_profile_app/modules/core_skills/core_skills_screen.dart';
 import 'package:endava_profile_app/modules/home/components/progress_bar.dart';
-import 'package:endava_profile_app/modules/home/models/section_list_item.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'bloc/bloc.dart';
 import 'components/section_card.dart';
-import 'home_mapper.dart';
+import 'package:endava_profile_app/common/components/flutter_team.dart';
+
+import 'package:endava_profile_app/modules/home/models/section_list_item.dart';
 import 'models/placeholder_item.dart';
+import 'bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'home_mapper.dart';
+import 'package:endava_profile_app/common/components/profile_app_bar.dart';
 
 class HomeBody extends StatefulWidget {
   @override
@@ -89,10 +88,7 @@ class _HomeBodyState extends State<HomeBody> {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
-                  return SectionCard(
-                    section: sections[index],
-                    onTap: _onSectionCardTap,
-                  );
+                  return SectionCard(section: sections[index]);
                 },
                 childCount: sections.length,
                 semanticIndexOffset: 2,
@@ -120,27 +116,11 @@ class _HomeBodyState extends State<HomeBody> {
   }
 
   List<SectionListItem> _getSections() => placeholders
-      .map(
-        (placeholder) => contentItems.firstWhere(
-          (item) => item.key == placeholder.key,
-          orElse: () => placeholder,
-        ),
-      )
+      .map((placeholder) => _getContentByKey(placeholder.key) ?? placeholder)
       .toList();
 
-  _onSectionCardTap(String key) {
-    switch (key) {
-      case 'skills':
-        _navigateTo(CoreSkillsScreen());
-        break;
-    }
-  }
-
-  _navigateTo(Widget widget) {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => widget,
-      ),
-    );
-  }
+  SectionListItem _getContentByKey(String key) => contentItems.firstWhere(
+        (item) => item.key == key,
+        orElse: () => null,
+      );
 }

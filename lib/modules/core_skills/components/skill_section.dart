@@ -1,4 +1,4 @@
-import 'package:endava_profile_app/common/constants/dimens.dart';
+import 'package:endava_profile_app/modules/common/constants/dimens.dart';
 import 'package:endava_profile_app/modules/core_skills/components/add_button.dart';
 import 'package:endava_profile_app/modules/core_skills/models/skill.dart';
 import 'package:endava_profile_app/modules/core_skills/models/skill_category.dart';

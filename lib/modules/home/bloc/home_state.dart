@@ -1,9 +1,10 @@
 import 'package:equatable/equatable.dart';
-
-import '../../../models/item.dart';
+import 'package:flutter/material.dart';
 import '../../../models/user.dart';
+import '../../../models/item.dart';
 
 class HomeState extends Equatable {
+
   const HomeState();
 
   factory HomeState.initial() {
@@ -23,9 +24,9 @@ class HomeSuccessResponse extends HomeState {
   final User currentUser;
   final List<Item> items;
 
-  HomeSuccessResponse({this.currentUser, this.items}) : super();
+  HomeSuccessResponse({this.currentUser, this.items}): super();
 }
 
 class HomeLoading extends HomeState {
-  HomeLoading() : super();
+  HomeLoading(): super();
 }

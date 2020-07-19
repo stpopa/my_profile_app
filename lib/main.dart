@@ -34,7 +34,7 @@ class EndavaProfileApp extends StatelessWidget {
         AppRoute.of(AppScreen.login): (c) => LoginScreen(),
         AppRoute.of(AppScreen.contributors): (c) =>
             ContributorsScreen(repository: 'stpopa/endava_profile_app'),
-        AppRoute.of(AppScreen.coreSkills): (c) => CoreSkillsScreen(),
+        AppRoute.of(AppScreen.skills): (c) => CoreSkillsScreen(),
       },
 //      initialRoute: AppRoute.of(AppScreen.home),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(

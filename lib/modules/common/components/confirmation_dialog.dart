@@ -1,11 +1,7 @@
-import 'package:endava_profile_app/common/constants/palette.dart';
+import 'package:endava_profile_app/modules/common/constants/palette.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmationDialog extends StatelessWidget {
-  final VoidCallback onConfirmPressed;
-
-  ConfirmationDialog({@required this.onConfirmPressed});
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -25,17 +21,15 @@ class ConfirmationDialog extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         FlatButton(
-            child: Text(
-              'Yes',
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle
-                  .copyWith(color: Palette.cinnabar),
-            ),
-            onPressed: () {
-              onConfirmPressed();
-              Navigator.pop(context);
-            }),
+          child: Text(
+            'Yes',
+            style: Theme.of(context)
+                .textTheme
+                .subtitle
+                .copyWith(color: Palette.cinnabar),
+          ),
+          onPressed: () => {},
+        ),
       ],
     );
   }

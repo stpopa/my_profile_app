@@ -1,31 +1,29 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'skill.g.dart';
-
-@JsonSerializable()
 class Skill {
-  final int id;
   final String title;
   final String icon;
   final int level;
 
   const Skill({
-    this.id,
     this.title,
     this.icon,
     this.level,
   });
-
-  Skill copyWith({int level}) {
-    return Skill(
-      id: id,
-      title: title,
-      icon: icon,
-      level: level ?? this.level,
-    );
-  }
-
-  factory Skill.fromJson(Map<String, dynamic> json) => _$SkillFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SkillToJson(this);
 }
+
+const List<Skill> skills = const <Skill>[
+  const Skill(
+    title: 'Java',
+    icon: 'assets/images/java-logo.png',
+    level: 1,
+  ),
+  const Skill(
+    title: 'Kotlin',
+    icon: 'assets/images/kotlin-logo.png',
+    level: 0,
+  ),
+  const Skill(
+    title: 'Dart',
+    icon: 'assets/images/swift-logo.png',
+    level: 2,
+  ),
+];

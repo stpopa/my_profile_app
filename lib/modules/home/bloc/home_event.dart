@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-
 import '../../../common/constants.dart';
+import 'package:flutter/material.dart';
 
 abstract class HomeEvent extends Equatable {
   const HomeEvent();
