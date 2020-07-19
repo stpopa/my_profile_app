@@ -1,4 +1,3 @@
-import 'package:endava_profile_app/common/constants.dart';
 import 'package:endava_profile_app/common/constants/dimens.dart';
 import 'package:endava_profile_app/modules/home/components/content/portfolio_content.dart';
 import 'package:endava_profile_app/modules/home/components/content/section_content.dart';

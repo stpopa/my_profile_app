@@ -62,8 +62,8 @@ class ItemService {
     return _parseSingleItemIn(response);
   }
 
-  Future<Item> get(Item item) async {
-    final url = BASE_URL + paths[ItemPath.item] + '/${item.key}';
+  Future<Item> get(String itemKey) async {
+    final url = BASE_URL + paths[ItemPath.item] + '/$itemKey';
 
     final response = await http.get(url, headers: await _getItemHeaders());
 

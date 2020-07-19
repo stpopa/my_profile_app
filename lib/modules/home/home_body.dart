@@ -5,6 +5,7 @@ import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/modules/core_skills/core_skills_screen.dart';
 import 'package:endava_profile_app/modules/home/components/progress_bar.dart';
 import 'package:endava_profile_app/modules/home/models/section_list_item.dart';
+import 'package:endava_profile_app/modules/summary/summary_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -133,11 +134,14 @@ class _HomeBodyState extends State<HomeBody> {
       case 'skills':
         _navigateTo(CoreSkillsScreen());
         break;
+      case 'summary':
+        _navigateTo(SummaryScreen());
+        break;
     }
   }
 
   _navigateTo(Widget widget) {
-    Navigator.of(context).pushReplacement(
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => widget,
       ),

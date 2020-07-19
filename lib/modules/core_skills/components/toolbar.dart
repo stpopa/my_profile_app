@@ -1,4 +1,3 @@
-import 'package:endava_profile_app/common/constants.dart';
 import 'package:endava_profile_app/common/constants/dimens.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:flutter/material.dart';
@@ -26,10 +25,7 @@ class Toolbar extends StatelessWidget implements PreferredSizeWidget {
           'assets/images/arrow-back.png',
           width: Dimens.sectionArrowWidth,
         ),
-        onPressed: () => Navigator.pushReplacementNamed(
-          context,
-          AppRoute.of(AppScreen.home),
-        ),
+        onPressed: () => Navigator.pop(context),
       ),
       bottom: bottom,
     );

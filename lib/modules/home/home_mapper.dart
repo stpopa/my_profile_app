@@ -1,4 +1,3 @@
-import 'bloc/bloc.dart';
 import 'package:endava_profile_app/modules/core_skills/models/skill_category.dart';
 
 import 'bloc/bloc.dart';
