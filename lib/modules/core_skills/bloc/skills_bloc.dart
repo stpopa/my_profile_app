@@ -49,7 +49,7 @@ class SkillsBloc extends Bloc<SkillsEvent, SkillsState> {
           final List<SkillCategory> response = await skillsService.update(
             jsonEncode(
               SkillsRequestContent(
-                key: 'skills',
+                key: HomeCategoryData.keyFor(HomeCategory.skills),
                 value: categories,
               ),
             ),

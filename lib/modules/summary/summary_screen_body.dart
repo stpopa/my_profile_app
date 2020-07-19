@@ -1,3 +1,4 @@
+import 'package:endava_profile_app/common/constants/dimens.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/common/constants/strings.dart';
 import 'package:endava_profile_app/modules/common/category_bloc/category_bloc.dart';
@@ -38,9 +39,13 @@ class _SummaryScreenBodyState extends State<SummaryScreenBody> {
               },
               child: Column(
                 children: <Widget>[
-                  CategoryHeader(
-                    title: HomeCategoryData.titleFor(HomeCategory.summary),
-                    subtitle: Strings.summarySubtitle,
+                  Padding(
+                    padding: EdgeInsets.only(left: Dimens.spacingSmall,
+                        right: Dimens.spacingSmall),
+                    child: CategoryHeader(
+                      title: HomeCategoryData.titleFor(HomeCategory.summary),
+                      subtitle: Strings.summarySubtitle,
+                    ),
                   ),
                   CategoryExampleExpandable(
                       exampleTitle: Strings.summaryExampleTitle,
