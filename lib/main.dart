@@ -12,6 +12,7 @@ import 'modules/auth/bloc/authentication_bloc.dart';
 import 'modules/auth/bloc/authentication_event.dart';
 import 'modules/home/home_screen.dart';
 import 'modules/login/login_screen.dart';
+import 'modules/user_data/user_data_screen.dart';
 
 void main() {
   runApp(BlocProvider<AuthenticationBloc>(
@@ -36,6 +37,7 @@ class EndavaProfileApp extends StatelessWidget {
             ContributorsScreen(repository: 'stpopa/endava_profile_app'),
         AppRoute.of(AppScreen.coreSkills): (c) => CoreSkillsScreen(),
         AppRoute.of(AppScreen.summary): (c) => SummaryScreen(),
+        AppRoute.of(AppScreen.user_data): (c) => UserDataScreen(),
       },
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {

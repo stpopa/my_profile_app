@@ -6,6 +6,7 @@ import 'package:endava_profile_app/modules/core_skills/core_skills_screen.dart';
 import 'package:endava_profile_app/modules/home/components/progress_bar.dart';
 import 'package:endava_profile_app/modules/home/models/section_list_item.dart';
 import 'package:endava_profile_app/modules/summary/summary_screen.dart';
+import 'package:endava_profile_app/modules/user_data/user_data_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -130,12 +131,16 @@ class _HomeBodyState extends State<HomeBody> {
       .toList();
 
   _onSectionCardTap(String key) {
+    print(key);
     switch (key) {
       case 'skills':
         _navigateToCategory(CoreSkillsScreen());
         break;
       case 'summary':
         _navigateToCategory(SummaryScreen());
+        break;
+      case 'user':
+        _navigateTo(UserDataScreen());
         break;
     }
   }
@@ -150,5 +155,15 @@ class _HomeBodyState extends State<HomeBody> {
         .then((item) => {
               if (item != null) {_bloc.add(Reload(item))}
             });
+  }
+
+  _navigateTo(Widget widget) async {
+    final result = await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (c) => widget,
+      ),
+    );
+
+    if (result != null) _bloc.add(ScreenLoaded());
   }
 }

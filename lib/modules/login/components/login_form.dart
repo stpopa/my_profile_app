@@ -44,6 +44,7 @@ class _LoginFormState extends State<LoginForm> {
               Column(
                 children: <Widget>[
                   TextInput(
+                    initialValue: "cc@gmail.com",
                     hintText: 'Email address',
                     keyboardType: TextInputType.emailAddress,
                     controller: _emailController,
@@ -53,6 +54,7 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                   SizedBox(height: Dimens.spacingLarge),
                   TextInput(
+                    initialValue: "111222333",
                     hintText: 'Password',
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
