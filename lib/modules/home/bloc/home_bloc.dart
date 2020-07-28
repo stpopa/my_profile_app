@@ -5,6 +5,7 @@ import 'package:endava_profile_app/services/item_service.dart';
 
 import '../../../models/item.dart';
 import '../../../models/user.dart';
+import 'package:endava_profile_app/common/constants.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final AuthService authService = AuthService();
@@ -24,6 +25,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
     if (event is SectionSelected) {
+      if (event.category == AppScreen.user_data)
+        print(event.category);
     } else if (event is ScreenLoaded) {
       yield HomeLoading();
 

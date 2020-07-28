@@ -10,7 +10,7 @@ class InvalidResponseError extends StateError {
   InvalidResponseError(String msg) : super(msg);
 }
 
-enum AuthPath { authenticate, signUp, me }
+enum AuthPath { authenticate, signUp, me, update, promote, demote, search }
 
 class AuthService {
   static const BASE_URL = 'https://dictionary-cloud.herokuapp.com';
@@ -18,6 +18,10 @@ class AuthService {
     AuthPath.authenticate: "/authenticate",
     AuthPath.signUp: "/signup",
     AuthPath.me: "/v1/me",
+    AuthPath.update: "/v1/user",
+    AuthPath.promote: "/v1/promote",
+    AuthPath.demote: "/v1/demote",
+    AuthPath.search: "/v1/user/search",
   };
 
   Map<String, String> headers = {'Content-Type': 'application/json'};
@@ -70,6 +74,21 @@ class AuthService {
       headers.addAll({'Authorization': authToken});
 
     final response = await http.get(url, headers: headers);
+
+    return _parseUserFrom(response);
+  }
+
+  Future<User> update(User userData) async {
+    final url = BASE_URL + paths[AuthPath.update];
+    String authToken = await FlutterKeychain.get(key: 'authToken');
+
+    if (authToken == '')
+      throw InvalidResponseError("User not autheticated");
+    else
+      headers.addAll({'Authorization': authToken});
+
+    String body = convert.jsonEncode(userData.toJson());
+    final response = await http.put(url, headers: headers, body: body);
 
     return _parseUserFrom(response);
   }

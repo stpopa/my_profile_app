@@ -13,15 +13,15 @@ class MainTheme extends Theme {
         primaryColorLight: Palette.darkGray,
         primaryColorDark: Colors.black,
         textTheme: TextTheme(
-          display2: TextStyle(
+          headline3: TextStyle(
             color: Palette.cinnabar,
             fontWeight: FontWeight.w800,
           ),
-          headline: TextStyle(
+          headline5: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w800,
           ),
-          subhead: TextStyle(
+          subtitle1: TextStyle(
             color: Palette.darkGray,
             fontWeight: FontWeight.w800,
           ),
