@@ -2,7 +2,11 @@ import 'package:endava_profile_app/common/components/flutter_team.dart';
 import 'package:endava_profile_app/common/components/profile_app_bar.dart';
 import 'package:endava_profile_app/common/constants/dimens.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
+import 'package:endava_profile_app/models/item.dart';
 import 'package:endava_profile_app/modules/core_skills/core_skills_screen.dart';
+import 'package:endava_profile_app/modules/domain_exp/bloc/domain_exp_provider.dart';
+import 'package:endava_profile_app/modules/domain_exp/domain_exp_screen.dart';
+import 'package:endava_profile_app/modules/domain_exp/models/DomainExperience.dart';
 import 'package:endava_profile_app/modules/home/components/progress_bar.dart';
 import 'package:endava_profile_app/modules/home/models/section_list_item.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +26,7 @@ class _HomeBodyState extends State<HomeBody> {
   HomeBloc _bloc;
 
   List<SectionListItem> contentItems = [];
+  List<Item> items = [];
 
   final List<SectionListItem> placeholders = [
     PlaceholderItem(
@@ -35,7 +40,7 @@ class _HomeBodyState extends State<HomeBody> {
       icon: 'assets/images/summary.png',
     ),
     PlaceholderItem(
-      key: 'experience',
+      key: 'experiences',
       title: 'Domain experience',
       icon: 'assets/images/experience.png',
     ),
@@ -68,6 +73,7 @@ class _HomeBodyState extends State<HomeBody> {
     _bloc.add(ScreenLoaded());
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       if (state is HomeSuccessResponse) {
+        items = state.items;
         contentItems = HomeMapper.map(response: state);
 
         final sections = _getSections();
@@ -130,6 +136,16 @@ class _HomeBodyState extends State<HomeBody> {
 
   _onSectionCardTap(String key) {
     switch (key) {
+      case 'experiences':
+        final domainExpItem =
+            items.firstWhere((element) => element.key == "experiences");
+
+        _navigateTo(
+          DomainExpProvider(
+            child: DomainExperienceScreen(item: domainExpItem),
+          ),
+        );
+        break;
       case 'skills':
         _navigateTo(CoreSkillsScreen());
         break;

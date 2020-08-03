@@ -23,13 +23,13 @@ class HomeCategoryData {
     HomeCategory.experience: "Domain experience",
     HomeCategory.skills: "Core skills",
     HomeCategory.education: "Education and training",
-    HomeCategory.portfolio: "Profesional experience",
+    HomeCategory.portfolio: "Professional experience",
   };
 
   static Map<HomeCategory, String> _keys = {
     HomeCategory.user: "user",
     HomeCategory.summary: "summary",
-    HomeCategory.experience: "experience",
+    HomeCategory.experience: "experiences",
     HomeCategory.skills: "skills",
     HomeCategory.education: "education",
     HomeCategory.portfolio: "portfolio",

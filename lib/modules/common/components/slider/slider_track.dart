@@ -14,6 +14,7 @@ class SliderTrack extends RoundedRectSliderTrackShape {
     @required Animation<double> enableAnimation,
     @required TextDirection textDirection,
     @required Offset thumbCenter,
+    double additionalActiveTrackHeight = 2,
     bool isDiscrete = false,
     bool isEnabled = false,
   }) {

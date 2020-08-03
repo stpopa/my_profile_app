@@ -1,4 +1,5 @@
 import 'package:endava_profile_app/common/constants/dimens.dart';
+import 'package:endava_profile_app/modules/home/components/content/domain_exp_content.dart';
 import 'package:endava_profile_app/modules/home/components/content/portfolio_content.dart';
 import 'package:endava_profile_app/modules/home/components/content/section_content.dart';
 import 'package:endava_profile_app/modules/home/components/content/skills_content.dart';
@@ -51,6 +52,8 @@ class SectionCard extends StatelessWidget {
       return UserContent(item: section);
     } else if (section is SkillsItem) {
       return SkillsContent(content: section);
+    } else if (section is DomainExperienceItem) {
+      return DomainExperienceContent(content: section);
     } else if (section is PortfolioItem) {
       return PortfolioContent(content: section);
     } else {
