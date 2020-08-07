@@ -28,8 +28,8 @@ class _CategoryContentInputState extends State<CategoryContentInput> {
     _categoryBloc = BlocProvider.of<CategoryBloc>(context);
 
     _inputFieldController.addListener(() {
-      if (_inputFieldController.text !=
-          _categoryBloc.savedItem.value["value"]) {
+      var content = _categoryBloc.currentItem?.value['value'] ?? "";
+      if (_inputFieldController.text != content) {
         _categoryBloc.add(CategoryEdited(
             item: Item(
                 key: "${HomeCategoryData.keyFor(_categoryBloc.category)}",
@@ -42,11 +42,10 @@ class _CategoryContentInputState extends State<CategoryContentInput> {
   Widget build(BuildContext context) {
     return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
-        _inputFieldController.text = _categoryBloc.currentItem?.value['value'];
+        var content = _categoryBloc.currentItem?.value['value'] ?? "";
+        _inputFieldController.text = content;
         _inputFieldController.selection = TextSelection.fromPosition(
-            TextPosition(
-                offset: _categoryBloc.currentItem?.value['value'].length));
-
+            TextPosition(offset: content.length));
         return Container(
             padding: const EdgeInsets.fromLTRB(Dimens.spacingMedium, 0.0,
                 Dimens.spacingMedium, Dimens.spacingMedium),

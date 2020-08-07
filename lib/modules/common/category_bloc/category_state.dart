@@ -14,6 +14,11 @@ class CategoryState extends Equatable {
 
   factory CategoryState.initial() {
     return CategoryState(isEdited: false, isSaving: false, isLeaving: false,
+        isLoading: false);
+  }
+
+  factory CategoryState.loading() {
+    return CategoryState(isEdited: false, isSaving: false, isLeaving: false,
         isLoading: true);
   }
 
