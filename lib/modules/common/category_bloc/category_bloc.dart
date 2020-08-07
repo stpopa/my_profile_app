@@ -3,6 +3,7 @@ import 'package:endava_profile_app/modules/common/category_bloc/category_event.d
 import 'package:endava_profile_app/modules/common/category_bloc/category_state.dart';
 import 'package:endava_profile_app/modules/home/models/home_category.dart';
 import 'package:endava_profile_app/services/item_service.dart';
+import 'package:endava_profile_app/services/item_service.dart' as itemService;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'category_state.dart';
@@ -16,17 +17,21 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   CategoryBloc(this.category);
 
   @override
-  get initialState => CategoryState.initial();
+  get initialState => CategoryState.loading();
 
   @override
   Stream<CategoryState> mapEventToState(CategoryEvent event) async* {
-    // TODO check against the field in model
     if (event is CategoryLoading) {
       yield state.copyWith(loading: true);
-      // TODO error handling
-      savedItem = await _loadCategory();
-      currentItem = savedItem;
-      yield state.copyWith(loading: false, data: savedItem);
+      try {
+        savedItem = await _loadCategory();
+        currentItem = savedItem;
+        yield state.copyWith(loading: false, data: currentItem);
+      } on itemService.InvalidResponseError {
+        currentItem =
+            Item(key: HomeCategoryData.keyFor(category), value: {'value': ""});
+        yield CategoryState.initial().copyWith(data: currentItem);
+      }
     } else if (event is CategoryEdited) {
       currentItem = event.item;
       yield state.copyWith(isEdited: true, data: currentItem);

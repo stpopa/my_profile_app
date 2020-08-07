@@ -132,7 +132,7 @@ class _HomeBodyState extends State<HomeBody> {
   _onSectionCardTap(String key) {
     switch (key) {
       case 'skills':
-        _navigateToSkills(CoreSkillsScreen());
+        _navigateToCategory(CoreSkillsScreen());
         break;
       case 'summary':
         _navigateToCategory(SummaryScreen());
@@ -140,24 +140,15 @@ class _HomeBodyState extends State<HomeBody> {
     }
   }
 
-  void _navigateToSkills(Widget widget) {
-    Navigator.of(context)
-        .pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => widget,
-      ),
-    );
-  }
-
   _navigateToCategory(Widget widget) {
     Navigator.of(context)
         .push(
-      MaterialPageRoute(
-        builder: (context) => widget,
-      ),
-    )
+          MaterialPageRoute(
+            builder: (context) => widget,
+          ),
+        )
         .then((item) => {
-      if (item != null) {_bloc.add(Reload(item))}
-    });
+              if (item != null) {_bloc.add(Reload(item))}
+            });
   }
 }

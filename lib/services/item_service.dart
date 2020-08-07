@@ -25,7 +25,7 @@ class ItemService {
     String authToken = await FlutterKeychain.get(key: 'authToken');
 
     if (authToken == '') {
-      throw InvalidResponseError('User not autheticated');
+      throw InvalidResponseError('User not authenticated');
     } else {
       headers.addAll({'Authorization': authToken});
     }
