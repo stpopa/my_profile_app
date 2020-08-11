@@ -11,4 +11,7 @@ class Palette {
   static const Color tomato = Color.fromARGB(255,   195, 47, 12);
   static const Color gray = Color.fromARGB(255, 169, 169, 169);
   static const Color cinnabar = Color(0xffDE411B);
+  static const Color black = Color.fromARGB(255, 0, 0, 0);
+  static const Color white = Color.fromARGB(255, 255, 255, 255);
+  static const Color harleyDavidsonOrange = Color.fromARGB(255, 195, 47, 12);
 }

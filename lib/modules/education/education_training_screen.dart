@@ -158,7 +158,7 @@ class _EducationTrainingScreenState extends State<EducationTrainingScreen> {
   }
 
   void _navigateBack() {
-    //TODO Navigate back
+    Navigator.pop(context);
   }
 
   @override

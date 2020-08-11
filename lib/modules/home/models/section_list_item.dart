@@ -1,3 +1,5 @@
 abstract class SectionListItem {
-  String key;
+  final String key;
+
+  SectionListItem({this.key});
 }
