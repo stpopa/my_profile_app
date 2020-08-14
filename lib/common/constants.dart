@@ -23,4 +23,11 @@ class AppRoute {
   };
 
   static String of(AppScreen screen) => _routes[screen];
+
+  static String fromKey(String key) => _routes[_appScreenForKey(key)];
+
+  static AppScreen _appScreenForKey(String key) =>
+      AppScreen.values.firstWhere((element) =>
+          element.toString().substring(element.toString().indexOf('.') + 1) ==
+          key);
 }

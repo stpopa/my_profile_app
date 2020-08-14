@@ -26,10 +26,7 @@ class Toolbar extends StatelessWidget implements PreferredSizeWidget {
           'assets/images/arrow-back.png',
           width: Dimens.sectionArrowWidth,
         ),
-        onPressed: () => Navigator.pushReplacementNamed(
-          context,
-          AppRoute.of(AppScreen.home),
-        ),
+        onPressed: () => Navigator.pop(context),
       ),
       bottom: bottom,
     );

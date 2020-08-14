@@ -1,3 +1,4 @@
+import 'package:endava_profile_app/models/item.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../common/constants.dart';
@@ -22,3 +23,10 @@ class SectionSelected extends HomeEvent {
 }
 
 class ScreenLoaded extends HomeEvent {}
+
+class Reload extends HomeEvent {
+  final Item item;
+
+  Reload(this.item);
+
+}

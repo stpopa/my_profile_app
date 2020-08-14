@@ -41,7 +41,7 @@ class EducationTrainingBloc {
   }
 
   void _fetchAchievements() {
-    itemService.get(Item(key: EDUCATION_TRAINING_ITEM_KEY)).then((item) {
+    itemService.get(EDUCATION_TRAINING_ITEM_KEY).then((item) {
       var achievements = Achievements.fromJson(item.value);
       if (achievements.hasData()) {
         achievementsController.add(achievements);
