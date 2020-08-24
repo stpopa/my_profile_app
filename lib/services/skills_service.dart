@@ -10,7 +10,7 @@ class SkillsService {
   SkillsService({this.itemService});
 
   Future<List<SkillCategory>> getSkills() async {
-    final response = await itemService.get(Item(key: 'skills'));
+    final response = await itemService.get('skills');
 
     return _parseSkillsFrom(response);
   }

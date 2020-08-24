@@ -1,6 +1,7 @@
 import 'package:endava_profile_app/common/components/button.dart';
 import 'package:endava_profile_app/common/components/text_input.dart';
 import 'package:endava_profile_app/common/constants/dimens.dart';
+import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/modules/login/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,6 +29,13 @@ class _LoginFormState extends State<LoginForm> {
       builder: (context, state) {
         if (state is LoginFailure) {
           _showLoginFailure(context);
+        } else if (state is LoginLoading) {
+          return Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(Palette.cinnabar),
+              strokeWidth: 6,
+            ),
+          );
         }
         return Form(
           child: Column(

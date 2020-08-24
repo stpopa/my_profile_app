@@ -25,7 +25,7 @@ class ItemService {
     String authToken = await FlutterKeychain.get(key: 'authToken');
 
     if (authToken == '') {
-      throw InvalidResponseError('User not autheticated');
+      throw InvalidResponseError('User not authenticated');
     } else {
       headers.addAll({'Authorization': authToken});
     }
@@ -62,8 +62,8 @@ class ItemService {
     return _parseSingleItemIn(response);
   }
 
-  Future<Item> get(Item item) async {
-    final url = BASE_URL + paths[ItemPath.item] + '/${item.key}';
+  Future<Item> get(String itemKey) async {
+    final url = BASE_URL + paths[ItemPath.item] + '/$itemKey';
 
     final response = await http.get(url, headers: await _getItemHeaders());
 
@@ -90,7 +90,10 @@ class ItemService {
     if (response.statusCode == 200) {
       List<dynamic> jsonItems = convert.jsonDecode(response.body)['data'];
 
-      return jsonItems.map((i) => Item.fromJson(i)).toList();
+      return jsonItems
+          .map((i) => _getItemFromJson(i))
+          .where((v) => null != v)
+          .toList();
     }
 
     throw InvalidResponseError(response.body);
@@ -108,5 +111,14 @@ class ItemService {
     }
 
     throw InvalidResponseError(response.body);
+  }
+
+  Item _getItemFromJson(i) {
+    try {
+      return Item.fromJson(i);
+    } catch (e) {
+      print("Cannot convert $i");
+      return null;
+    }
   }
 }

@@ -1,13 +1,12 @@
+import 'package:endava_profile_app/modules/common/category_components/category_example_expandable.dart';
 import 'package:endava_profile_app/modules/domain_exp/bloc/domain_exp_events.dart';
 import 'package:endava_profile_app/modules/domain_exp/bloc/domain_exp_provider.dart';
 import 'package:endava_profile_app/modules/domain_exp/widgets/add_domain_input.dart';
 
 import 'helpers/domain_strings.dart';
 import 'models/DomainExperience.dart';
-import 'widgets/Separator.dart';
 import 'widgets/add_domain_button.dart';
 import 'widgets/domain_entry.dart';
-import 'widgets/domain_example.dart';
 import '../../common/constants/palette.dart';
 
 import 'package:flutter/material.dart';
@@ -53,12 +52,10 @@ class DomainExperienceBody extends StatelessWidget {
                 style: _descriptionStyle,
                 textAlign: TextAlign.center,
               ),
-              Separator(),
-              Example(
-                title: DomainExpStrings.exampleTitle,
-                details: DomainExpStrings.exampleDetails,
+              CategoryExampleExpandable(
+                exampleTitle: DomainExpStrings.exampleTitle,
+                exampleText: DomainExpStrings.exampleDetails,
               ),
-              Separator(),
               StreamBuilder<List<DomainExperience>>(
                   stream: bloc.experiences,
                   builder: (context, snapshot) {

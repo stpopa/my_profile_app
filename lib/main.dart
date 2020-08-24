@@ -3,6 +3,7 @@ import 'modules/auth/bloc/authentication_state.dart';
 import 'modules/auth/bloc/authentication_bloc.dart';
 import 'modules/auth/bloc/authentication_event.dart';
 import 'modules/contributors/contributors_screen.dart';
+import 'modules/summary/summary_screen.dart';
 import 'modules/core_skills/core_skills_screen.dart';
 import 'modules/domain_exp/domain_exp_screen.dart';
 import 'modules/home/home_screen.dart';
@@ -36,8 +37,8 @@ class EndavaProfileApp extends StatelessWidget {
         AppRoute.of(AppScreen.coreSkills): (c) => CoreSkillsScreen(),
         AppRoute.of(AppScreen.domainExperience): (c) =>
             DomainExperienceScreen(),
+        AppRoute.of(AppScreen.summary): (c) => SummaryScreen(),
       },
-//      initialRoute: AppRoute.of(AppScreen.home),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           if (state is AuthenticatedState) {

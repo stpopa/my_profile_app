@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert' as convert;
-import 'package:http/http.dart' as http;
+
 import '../models/contributor.dart';
 import '../models/user.dart';
 import 'open_contributors_cache_manager.dart';
