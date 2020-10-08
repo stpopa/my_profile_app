@@ -45,7 +45,7 @@ class _BasicInputState extends State<BasicInput> {
         hintStyle: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
-          color: Palette.darkGray,
+          color: Palette.gainsboro,
         ),
         hintText: widget.hintText,
         border: InputBorder.none,

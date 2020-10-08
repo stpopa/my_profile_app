@@ -21,7 +21,6 @@ class UserDataBloc extends Bloc<UserDataEvent, UserDataState> {
 
   @override
   Stream<UserDataState> mapEventToState(UserDataEvent event) async* {
-    print("unsaved changes? ${_hasUnsavedChanges()}");
     if (event is ScreenLoaded) {
       user = await authService.me();
 

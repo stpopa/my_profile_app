@@ -28,7 +28,7 @@ class ProgressBar extends StatelessWidget {
       footer: Padding(
         padding: const EdgeInsets.symmetric(vertical: Dimens.spacingMedium),
         child: Text(
-          'Preview and publish',
+          'Preview',
           style: Theme.of(context).textTheme.subhead.copyWith(
                 color: Colors.black,
               ),

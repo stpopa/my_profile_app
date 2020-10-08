@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:endava_profile_app/services/auth_service.dart';
 import 'package:flutter_keychain/flutter_keychain.dart';
 
-import 'authentication_event.dart';
-import 'authentication_state.dart';
+import 'bloc.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
+  final AuthService authService = AuthService();
 
   @override
   AuthenticationState get initialState => UnauthenticatedState();
@@ -14,7 +15,7 @@ class AuthenticationBloc
   Stream<AuthenticationState> mapEventToState(
       AuthenticationEvent event) async* {
     if (event is AppStartedEvent) {
-      if (await _hasToken()) {
+      if (await authService.isAuthenticated()) {
         yield AuthenticatedState();
       } else {
         yield UnauthenticatedState();
@@ -26,7 +27,6 @@ class AuthenticationBloc
     }
 
     if (event is LoggedOutEvent) {
-      // todo delete token
       yield UnauthenticatedState();
     }
   }

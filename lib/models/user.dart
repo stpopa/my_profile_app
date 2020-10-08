@@ -5,22 +5,36 @@ part 'user.g.dart';
 
 @JsonSerializable(nullable: true)
 class User extends Equatable {
-  String name;
-  String role;
-  String thumbnail;
+  final String name;
+  final String role;
+  final String thumbnail;
 
   @JsonKey(name: 'account_type')
-  String accountType;
+  final String accountType;
 
   @JsonKey(name: 'uniq_key')
-  String uniqKey;
+  final String uniqKey;
+  final bool selected;
 
-  User({this.name, this.role, this.thumbnail, this.accountType, this.uniqKey});
+  User({
+    this.name,
+    this.role,
+    this.thumbnail,
+    this.accountType,
+    this.uniqKey,
+    this.selected = false,
+  });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
-  List<Object> get props => [name, role, thumbnail, accountType, uniqKey];
+  List<Object> get props => [uniqKey];
+
+  bool get isModerator => accountType == 'moderator';
+
+  User copy() {
+    return User.fromJson(this.toJson());
+  }
 }

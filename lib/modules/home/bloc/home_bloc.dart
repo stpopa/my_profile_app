@@ -18,11 +18,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeState get initialState => HomeState.initial();
 
   @override
-  void onTransition(Transition<HomeEvent, HomeState> transition) {
-    print(transition);
-  }
-
-  @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
     if (event is SectionSelected) {
       if (event.category == AppScreen.user_data)
@@ -35,11 +30,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       // also fetch and map items here
 
       yield HomeSuccessResponse(currentUser: _currentUser, items: _items);
-    } else if (event is Reload) {
+    } else if (event is Logout) {
       yield HomeLoading();
 
-      _updateItems(event.item);
-      yield HomeSuccessResponse(currentUser: _currentUser, items: _items);
+      final success = await authService.logout();
+
+      if (success)
+        yield ReplaceHomeRoute(replaceRoute: AppScreen.auth);
+      else
+        yield initialState;
     }
   }
 

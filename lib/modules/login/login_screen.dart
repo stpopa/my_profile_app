@@ -8,16 +8,11 @@ import 'bloc/bloc.dart';
 import 'components/login_form.dart';
 
 class LoginScreen extends StatelessWidget {
-  final AuthService authService = AuthService();
-
   @override
   Widget build(BuildContext context) {
     return OnboardingPageLayout(
       child: BlocProvider(
-        create: (context) => LoginBloc(
-          BlocProvider.of<AuthenticationBloc>(context),
-          authService,
-        ),
+        create: (context) => LoginBloc(),
         child: LoginForm(),
       ),
     );
