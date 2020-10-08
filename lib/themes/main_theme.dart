@@ -25,14 +25,14 @@ class MainTheme extends Theme {
             color: Palette.darkGray,
             fontWeight: FontWeight.w800,
           ),
-          title: TextStyle(
+          headline6: TextStyle(
               color: Colors.black, fontWeight: FontWeight.w800, fontSize: 24.0),
-          subtitle: TextStyle(
+          subtitle2: TextStyle(
             color: Palette.gray,
             fontWeight: FontWeight.w400,
             fontSize: 16.0,
           ),
-          body1: TextStyle(
+          bodyText2: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w400,
             fontSize: 18.0,
