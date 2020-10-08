@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:endava_profile_app/common/constants.dart';
 
 import '../../../models/item.dart';
 import '../../../models/user.dart';
@@ -24,6 +25,12 @@ class HomeSuccessResponse extends HomeState {
   final List<Item> items;
 
   HomeSuccessResponse({this.currentUser, this.items}) : super();
+}
+
+class ReplaceHomeRoute extends HomeState {
+  final AppScreen replaceRoute;
+
+  ReplaceHomeRoute({this.replaceRoute});
 }
 
 class HomeLoading extends HomeState {

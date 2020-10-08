@@ -14,6 +14,7 @@ enum ItemPath { item, items }
 
 class ItemService {
   static const BASE_URL = 'https://dictionary-cloud.herokuapp.com';
+//  static const BASE_URL = 'http://localhost:3000';
   static const Map<ItemPath, String> paths = {
     ItemPath.item: "/v1/item",
     ItemPath.items: "/v1/items"

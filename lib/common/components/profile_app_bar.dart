@@ -85,9 +85,7 @@ class ProfileAppBar extends SliverAppBar {
   }
 
   _backPressed() {
-    print("============");
-    print(hasUnsavedChanges);
-    if (hasUnsavedChanges)
+    if (hasUnsavedChanges != null && hasUnsavedChanges)
       _showUnsavedChangesAlertDialog();
     else
       Navigator.of(context).pop(popPayload);

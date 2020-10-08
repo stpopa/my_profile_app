@@ -13,6 +13,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
     thumbnail: json['thumbnail'] as String,
     accountType: json['account_type'] as String,
     uniqKey: json['uniq_key'] as String,
+    selected: json['selected'] as bool ?? false,
   );
 }
 
@@ -22,4 +23,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'thumbnail': instance.thumbnail,
       'account_type': instance.accountType,
       'uniq_key': instance.uniqKey,
+      'selected': instance.selected,
     };
