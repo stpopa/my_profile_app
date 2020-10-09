@@ -30,7 +30,7 @@ class TextInput extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: Theme.of(context).textTheme.subhead,
+        hintStyle: Theme.of(context).textTheme.subtitle1,
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
             color: Theme.of(context).primaryColorLight,
