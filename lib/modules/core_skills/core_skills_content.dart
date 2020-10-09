@@ -51,8 +51,14 @@ class _CoreSkillsContentState extends State<CoreSkillsContent> {
           );
         }
 
-        return Center(
-          child: CircularProgressIndicator(),
+        return Container(
+          color: Palette.wildSand,
+          child: Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(Palette.cinnabar),
+              strokeWidth: 6,
+            ),
+          ),
         );
       },
     );
