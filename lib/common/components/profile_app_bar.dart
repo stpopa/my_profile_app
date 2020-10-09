@@ -3,6 +3,7 @@ import '../constants/palette.dart';
 
 class ProfileAppBar extends SliverAppBar {
   final BuildContext context;
+  final Widget customTitle;
   final Color bgColor;
   final List<Widget> trailingActions;
   final String stringTitle;
@@ -12,6 +13,7 @@ class ProfileAppBar extends SliverAppBar {
   final VoidCallback onDiscard;
 
   ProfileAppBar({
+    this.customTitle,
     this.bgColor,
     this.context,
     this.stringTitle = '',
@@ -41,12 +43,12 @@ class ProfileAppBar extends SliverAppBar {
   Widget get leading => _buildBackButton();
 
   @override
-  Widget get title => _buildTitle();
+  Widget get title => customTitle ?? _buildDefaultTitle();
 
   @override
   List<Widget> get actions => trailingActions;
 
-  Widget _buildTitle() {
+  Widget _buildDefaultTitle() {
     if (stringTitle != '')
       return Text(
         stringTitle,

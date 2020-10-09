@@ -26,6 +26,10 @@ class ListService {
     ListPath.get_list: "/v1/list/%s",
   };
 
+  String getShareUrl(UserList userList) {
+    return sprintf(BASE_URL + paths[ListPath.get_list], [userList.uniqKey]);
+  }
+
   Future<UserList> create(UserList list) async {
     final url = BASE_URL + paths[ListPath.create];
 
@@ -84,10 +88,17 @@ class ListService {
 
     ApiResponse apiResponse = _parseResponse(response);
 
-    if (apiResponse.success) {
-      List<Map<String, dynamic>> listArray = apiResponse.data;
+    try {
+      if (apiResponse.success) {
+        List<dynamic> listArray = apiResponse.data;
 
-      return listArray.map((list) => UserList.fromJson(list)).toList();
+        return listArray
+            .map((list) => UserList.fromJson(list as Map<String, dynamic>))
+            .toList();
+      }
+    } catch (e) {
+      print(e);
+      throw e;
     }
 
     throw InvalidResponseError(response.body);
