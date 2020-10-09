@@ -6,7 +6,7 @@ import 'bloc/bloc.dart';
 import 'package:endava_profile_app/common/components/basic_input.dart';
 import 'package:endava_profile_app/models/user.dart';
 import 'package:endava_profile_app/modules/search_user/search_user_screen.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
+import 'components/user_card.dart';
 
 class CreateListBody extends StatefulWidget {
   final String listUniqKey;
@@ -110,6 +110,9 @@ class _CreateListBodyState extends State<CreateListBody> {
                       onTap: () {
                         // Route to user preview page, when ready
                       },
+                      onSelectionChanged: (selected) {
+                        _bloc.add(UserSelected(user));
+                      },
                       onTapDelete: () {
                         _bloc.add(UserRemoved(user));
 
@@ -147,57 +150,5 @@ class _CreateListBodyState extends State<CreateListBody> {
 
       setState(() {});
     }
-  }
-}
-
-class UserCard extends StatelessWidget {
-  final User user;
-  final VoidCallback onTap;
-  final VoidCallback onTapDelete;
-
-  UserCard({this.user, this.onTap, this.onTapDelete});
-
-  @override
-  Widget build(BuildContext context) {
-    return Slidable(
-      actionExtentRatio: 0.15,
-      actionPane: SlidableBehindActionPane(),
-      secondaryActions: [
-        Container(
-          child: Material(
-            color: Colors.transparent,
-            child: IconButton(
-              icon: Icon(
-                Icons.delete_outline,
-                color: Palette.wildSand,
-              ),
-              onPressed: onTapDelete,
-            ),
-          ),
-          height: 70,
-          decoration: BoxDecoration(
-              color: Palette.cinnabar,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(8),
-                bottomRight: Radius.circular(8),
-              )),
-        ),
-      ],
-      child: Card(
-        child: ListTile(
-          leading: CircleAvatar(
-            radius: 25,
-            backgroundImage: NetworkImage(user.thumbnail),
-          ),
-          title: Text(user.name),
-          subtitle: Text(user.role),
-        ),
-        elevation: 3,
-        margin: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-      ),
-    );
   }
 }

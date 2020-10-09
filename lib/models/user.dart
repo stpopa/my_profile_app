@@ -30,11 +30,27 @@ class User extends Equatable {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
-  List<Object> get props => [uniqKey];
+  List<Object> get props => [uniqKey, selected];
 
   bool get isModerator => accountType == 'moderator';
 
   User copy() {
     return User.fromJson(this.toJson());
+  }
+
+  User copyWith({
+    String name,
+    String role,
+    String thumbnail,
+    String accountType,
+    bool selected,
+  }) {
+    return User(
+        name: name ?? this.name,
+        role: role ?? this.role,
+        thumbnail: thumbnail ?? this.thumbnail,
+        accountType: accountType ?? this.accountType,
+        uniqKey: this.uniqKey,
+        selected: selected ?? this.selected);
   }
 }

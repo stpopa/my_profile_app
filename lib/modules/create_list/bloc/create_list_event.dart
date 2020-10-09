@@ -32,4 +32,9 @@ class UserRemoved extends CreateListEvent {
   UserRemoved(this.user);
 }
 
+class UserSelected extends CreateListEvent {
+  final User user;
+
+  UserSelected(this.user);
+}
 class SavePressed extends CreateListEvent {}

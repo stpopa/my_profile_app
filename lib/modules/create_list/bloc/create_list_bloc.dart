@@ -90,6 +90,15 @@ class CreateListBloc extends Bloc<CreateListEvent, CreateListState> {
         hasChanges: hasChanges,
         hasUnsavedChanges: _hasUnsavedChanges(),
       );
+    } else if (event is UserSelected) {
+      final index = users.indexOf(event.user);
+      users.removeAt(index);
+      users.insert(index, event.user.copyWith(selected: !event.user.selected));
+
+      yield ListReceived(
+        list: UserList(name: name, users: users),
+        hasUnsavedChanges: _hasUnsavedChanges(),
+      );
     }
   }
 
