@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:endava_profile_app/data/user_repository.dart';
+import 'package:flutter_keychain/flutter_keychain.dart';
 
 import 'DomainExperience.dart';
 import 'package:http/http.dart' as http;
@@ -15,7 +14,7 @@ class DomainExpRepository {
 
   Future<http.Response> saveDomainExperiences() async {
 
-    final authToken = await UserRepository.instance.fetchUserToken();
+    final authToken = await FlutterKeychain.get(key: 'authToken');
 
     return http.post(
       _BASE_URL + _ENDPOINT,

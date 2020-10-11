@@ -10,17 +10,60 @@ class InvalidResponseError extends StateError {
   InvalidResponseError(String msg) : super(msg);
 }
 
-enum AuthPath { authenticate, signUp, me }
+enum AuthPath { authenticate, signUp, me, update, promote, demote, search }
 
 class AuthService {
   static const BASE_URL = 'https://dictionary-cloud.herokuapp.com';
+//  static const BASE_URL = 'http://localhost:3000';
+
   static const Map<AuthPath, String> paths = {
     AuthPath.authenticate: "/authenticate",
     AuthPath.signUp: "/signup",
     AuthPath.me: "/v1/me",
+    AuthPath.update: "/v1/user",
+    AuthPath.promote: "/v1/promote",
+    AuthPath.demote: "/v1/demote",
+    AuthPath.search: "/v1/user/search",
   };
 
   Map<String, String> headers = {'Content-Type': 'application/json'};
+
+  Future<bool> isAuthenticated() async {
+    return await FlutterKeychain.get(key: 'authToken') != null;
+  }
+
+  Future<bool> logout() async {
+    await FlutterKeychain.remove(key: 'authToken');
+
+    return await FlutterKeychain.get(key: 'authToken') == null;
+  }
+
+  Future<List<User>> search(String searchString) async {
+    if (searchString.trim() == '') return [];
+
+    final url =
+        BASE_URL + paths[AuthPath.search] + "?search_string=$searchString";
+
+    String authToken = await FlutterKeychain.get(key: 'authToken');
+
+    if (authToken == '')
+      throw InvalidResponseError("User not autheticated");
+    else
+      headers.addAll({'Authorization': authToken});
+
+    final response = await http.get(url, headers: headers);
+
+    if (response.statusCode == 200) {
+      final apiResponse =
+          ApiResponse.fromJson(convert.json.decode(response.body));
+
+      List<dynamic> dynamicUsers = apiResponse.data;
+
+      return dynamicUsers.map((e) => User.fromJson(e)).toList();
+    }
+
+    throw InvalidResponseError(response.body);
+  }
 
   Future<String> authenticate(String email, String password) async {
     final url = BASE_URL + paths[AuthPath.authenticate];
@@ -70,6 +113,21 @@ class AuthService {
       headers.addAll({'Authorization': authToken});
 
     final response = await http.get(url, headers: headers);
+
+    return _parseUserFrom(response);
+  }
+
+  Future<User> update(User userData) async {
+    final url = BASE_URL + paths[AuthPath.update];
+    String authToken = await FlutterKeychain.get(key: 'authToken');
+
+    if (authToken == '')
+      throw InvalidResponseError("User not autheticated");
+    else
+      headers.addAll({'Authorization': authToken});
+
+    String body = convert.jsonEncode(userData.toJson());
+    final response = await http.put(url, headers: headers, body: body);
 
     return _parseUserFrom(response);
   }

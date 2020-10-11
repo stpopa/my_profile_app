@@ -50,7 +50,7 @@ class _CategoryContentInputState extends State<CategoryContentInput> {
             padding: const EdgeInsets.fromLTRB(Dimens.spacingMedium, 0.0,
                 Dimens.spacingMedium, Dimens.spacingMedium),
             child: TextField(
-              style: Theme.of(context).textTheme.body1,
+              style: Theme.of(context).textTheme.bodyText2.copyWith(fontSize: 20),
               maxLines: null,
               controller: _inputFieldController,
               autofocus: false,
@@ -59,7 +59,7 @@ class _CategoryContentInputState extends State<CategoryContentInput> {
                 hintText: widget.hintText,
                 hintStyle: Theme.of(context)
                     .textTheme
-                    .subtitle
+                    .subtitle2
                     .copyWith(color: Palette.lightGray),
               ),
             ));

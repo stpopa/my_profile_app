@@ -5,6 +5,7 @@ import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/modules/login/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:endava_profile_app/common/constants.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   void initState() {
     super.initState();
+
     _loginBloc = BlocProvider.of<LoginBloc>(context);
   }
 
@@ -27,6 +29,8 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
+        print(state);
+
         if (state is LoginFailure) {
           _showLoginFailure(context);
         } else if (state is LoginLoading) {
@@ -37,6 +41,13 @@ class _LoginFormState extends State<LoginForm> {
             ),
           );
         }
+
+        if (state is LoginSuccess)
+          Future.delayed(Duration(milliseconds: 10), (){
+            Navigator.of(context)
+                .pushReplacementNamed(AppRoute.of(AppScreen.home));
+          });
+
         return Form(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,6 +55,7 @@ class _LoginFormState extends State<LoginForm> {
               Column(
                 children: <Widget>[
                   TextInput(
+                    initialValue: "cc@gmail.com",
                     hintText: 'Email address',
                     keyboardType: TextInputType.emailAddress,
                     controller: _emailController,
@@ -53,6 +65,7 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                   SizedBox(height: Dimens.spacingLarge),
                   TextInput(
+                    initialValue: "111222333",
                     hintText: 'Password',
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,

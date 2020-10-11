@@ -34,5 +34,5 @@ class TabSection extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => null;
+  Size get preferredSize => Size.fromHeight(Dimens.appBarSize);
 }

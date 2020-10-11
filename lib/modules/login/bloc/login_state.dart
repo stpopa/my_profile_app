@@ -52,6 +52,11 @@ class LoginLoading extends LoginState {
       : super(isEmailValid: true, isPasswordValid: true, isFormSubmitted: true);
 }
 
+class LoginSuccess extends LoginState {
+  LoginSuccess()
+      : super(isEmailValid: true, isPasswordValid: true, isFormSubmitted: true);
+}
+
 class LoginFailure extends LoginState {
   LoginFailure()
       : super(isEmailValid: true, isPasswordValid: true, isFormSubmitted: true);

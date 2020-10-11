@@ -7,17 +7,17 @@ class SliderTrack extends RoundedRectSliderTrackShape {
 
   @override
   void paint(
-    PaintingContext context,
-    Offset offset, {
-    @required RenderBox parentBox,
-    @required SliderThemeData sliderTheme,
-    @required Animation<double> enableAnimation,
-    @required TextDirection textDirection,
-    @required Offset thumbCenter,
-    double additionalActiveTrackHeight = 2,
-    bool isDiscrete = false,
-    bool isEnabled = false,
-  }) {
+      PaintingContext context,
+      Offset offset, {
+        @required RenderBox parentBox,
+        @required SliderThemeData sliderTheme,
+        @required Animation<double> enableAnimation,
+        @required TextDirection textDirection,
+        @required Offset thumbCenter,
+        bool isDiscrete = false,
+        bool isEnabled = false,
+        double additionalActiveTrackHeight = 2,
+      }) {
     if (sliderTheme.trackHeight <= 0) {
       return;
     }

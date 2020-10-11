@@ -13,26 +13,26 @@ class MainTheme extends Theme {
         primaryColorLight: Palette.darkGray,
         primaryColorDark: Colors.black,
         textTheme: TextTheme(
-          display2: TextStyle(
+          headline3: TextStyle(
             color: Palette.cinnabar,
             fontWeight: FontWeight.w800,
           ),
-          headline: TextStyle(
+          headline5: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w800,
           ),
-          subhead: TextStyle(
+          subtitle1: TextStyle(
             color: Palette.darkGray,
             fontWeight: FontWeight.w800,
           ),
-          title: TextStyle(
+          headline6: TextStyle(
               color: Colors.black, fontWeight: FontWeight.w800, fontSize: 24.0),
-          subtitle: TextStyle(
+          subtitle2: TextStyle(
             color: Palette.gray,
             fontWeight: FontWeight.w400,
             fontSize: 16.0,
           ),
-          body1: TextStyle(
+          bodyText2: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w400,
             fontSize: 18.0,

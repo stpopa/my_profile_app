@@ -72,7 +72,7 @@ class _SkillCardState extends State<SkillCard> {
                               widget.skill.title,
                               style: Theme.of(context)
                                   .textTheme
-                                  .title
+                                  .headline6
                                   .copyWith(fontWeight: FontWeight.bold),
                             ),
                           ),

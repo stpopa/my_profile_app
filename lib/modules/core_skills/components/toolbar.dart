@@ -18,7 +18,7 @@ class Toolbar extends StatelessWidget implements PreferredSizeWidget {
         'Core skills',
         style: Theme.of(context)
             .textTheme
-            .title
+            .headline6
             .copyWith(fontWeight: FontWeight.bold),
       ),
       leading: IconButton(

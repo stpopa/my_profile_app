@@ -2,24 +2,32 @@
 enum AppScreen {
   home,
   login,
+  auth,
+  create_list,
   contributors,
+  user_data,
   summary,
   domainExperience,
   coreSkills,
   educationAndTraining,
-  professionalExperience
+  professionalExperience,
+  your_lists
 }
 
 class AppRoute {
   static Map<AppScreen, String> _routes = {
-    AppScreen.home: '/',
+    AppScreen.auth: '/',
+    AppScreen.home: '/home',
     AppScreen.login: '/login',
     AppScreen.contributors: '/contributors',
     AppScreen.summary: '/summary',
     AppScreen.domainExperience: '/domainExperience',
     AppScreen.coreSkills: '/coreSkills',
     AppScreen.educationAndTraining: '/educationAndTraining',
-    AppScreen.professionalExperience: '/professionalExperience'
+    AppScreen.professionalExperience: '/professionalExperience',
+    AppScreen.user_data: '/user_data',
+    AppScreen.create_list: '/create_list',
+    AppScreen.your_lists: '/your_lists',
   };
 
   static String of(AppScreen screen) => _routes[screen];

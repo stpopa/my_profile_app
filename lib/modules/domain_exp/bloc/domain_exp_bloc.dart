@@ -22,7 +22,6 @@ class DomainExpBloc {
   }
 
   void prepareInitialData(Item item) {
-    print('PREPARING');
     List<DomainExperience> experiences =
         item.value.map<DomainExperience>((jsonValue) {
       return DomainExperience.fromJson(jsonValue);

@@ -14,19 +14,21 @@ class SliderOverlayShape extends SliderComponentShape {
 
   @override
   void paint(
-    PaintingContext context,
-    Offset center, {
-    Animation<double> activationAnimation,
-    Animation<double> enableAnimation,
-    bool isDiscrete,
-    TextPainter labelPainter,
-    RenderBox parentBox,
-    Size sizeWithOverflow,
-    SliderThemeData sliderTheme,
-    TextDirection textDirection,
-    double textScaleFactor,
-    double value,
-  }) {
+      PaintingContext context,
+      Offset center,
+      {
+        Animation<double> activationAnimation,
+        Animation<double> enableAnimation,
+        bool isDiscrete,
+        TextPainter labelPainter,
+        RenderBox parentBox,
+        SliderThemeData sliderTheme,
+        TextDirection textDirection,
+        double value,
+        double textScaleFactor,
+        Size sizeWithOverflow
+      }) {
+
     final Canvas canvas = context.canvas;
 
     final Tween<double> widthTween = Tween<double>(
