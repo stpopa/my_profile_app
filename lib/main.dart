@@ -2,6 +2,7 @@ import 'package:endava_profile_app/modules/auth/authentication_screen.dart';
 import 'package:endava_profile_app/modules/contributors/contributors_screen.dart';
 import 'package:endava_profile_app/modules/core_skills/core_skills_screen.dart';
 import 'package:endava_profile_app/modules/home/home_screen.dart';
+import 'package:endava_profile_app/modules/professionalExperience/professional_experience.dart';
 import 'package:endava_profile_app/modules/summary/summary_screen.dart';
 import 'package:endava_profile_app/modules/your_lists/your_lists_screen.dart';
 import 'package:endava_profile_app/modules/user_data/user_data_screen.dart';
@@ -37,6 +38,7 @@ class EndavaProfileApp extends StatelessWidget {
         AppRoute.of(AppScreen.summary): (c) => SummaryScreen(),
         AppRoute.of(AppScreen.user_data): (c) => UserDataScreen(),
         AppRoute.of(AppScreen.your_lists): (c) => YourListsScreen(),
+        AppRoute.of(AppScreen.professionalExperience): (c) => ProfessionalExperienceScreen(),
       },
       initialRoute: AppRoute.of(AppScreen.auth)
     );

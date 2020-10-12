@@ -14,4 +14,6 @@ class Palette {
   static const Color white = Color.fromARGB(255, 255, 255, 255);
   static const Color harleyDavidsonOrange = Color.fromARGB(255, 195, 47, 12);
   static const Color rottenTomato = Color.fromARGB(255, 94, 0, 0);
+  static const Color hintColor = Color(0xff8a8a8a);
+  static const Color placeholder = Color(0xffa9a9a9);
 }
