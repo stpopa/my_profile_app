@@ -33,7 +33,7 @@ class CategoryExampleExpandable extends StatelessWidget {
               children: <Widget>[
                 ImageIcon(
                   AssetImage('assets/images/quote-icon.png'),
-                  color: Theme.of(context).accentColor,
+                  color: Palette.cinnabar,
                   size: 28,
                 ),
                 Padding(
@@ -54,7 +54,7 @@ class CategoryExampleExpandable extends StatelessWidget {
               iconSize: 24.0,
               expandIcon: ProfileAppIcons.expand_icon,
               collapseIcon: ProfileAppIcons.expand_icon,
-              iconColor: Theme.of(context).accentColor),
+              iconColor: Palette.cinnabar),
           expanded: Padding(
               padding: const EdgeInsets.fromLTRB(Dimens.spacingXHuge, 0.0,
                   Dimens.spacingXSmall, Dimens.spacingLarge),

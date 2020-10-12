@@ -14,7 +14,7 @@ class ViewListButton extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(20),
           child: IconButton(
-            icon: Icon(Icons.list_outlined),
+            icon: Icon(Icons.list),
             onPressed: onTap,
             iconSize: 32,
             color: Palette.cinnabar,

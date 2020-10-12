@@ -31,18 +31,24 @@ class HomeMapper {
             );
             break;
 
-          case HomeCategory.experience:
-          // Map to created models...
-            String value = item.value['value'];
+        case HomeCategory.experience:
+          final experiences = item.value.length > 0
+              ? List.from(item.value)
+                  .map((e) => e['title'])
+                  .reduce((value, element) => value + ',' + element)
+              : null;
+
+          if (experiences != null) {
             contentItems.add(
-              ContentItem(
+              DomainExperienceItem(
                 key: HomeCategoryData.keyFor(category),
-                value: value,
+                value: experiences,
                 icon: HomeCategoryData.assetFor(category),
                 title: HomeCategoryData.titleFor(category),
               ),
             );
-            break;
+          }
+          break;
 
         case HomeCategory.skills:
           var skills = List.from(item.value)

@@ -2,7 +2,10 @@ import 'package:endava_profile_app/common/components/flutter_team.dart';
 import 'package:endava_profile_app/common/components/profile_app_bar.dart';
 import 'package:endava_profile_app/common/constants/dimens.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
+import 'package:endava_profile_app/models/item.dart';
 import 'package:endava_profile_app/modules/core_skills/core_skills_screen.dart';
+import 'package:endava_profile_app/modules/domain_exp/bloc/domain_exp_provider.dart';
+import 'package:endava_profile_app/modules/domain_exp/domain_exp_screen.dart';
 import 'package:endava_profile_app/modules/home/components/progress_bar.dart';
 import 'package:endava_profile_app/modules/home/components/view_list_button.dart';
 import 'package:endava_profile_app/modules/home/models/section_list_item.dart';
@@ -26,6 +29,7 @@ class _HomeBodyState extends State<HomeBody> {
   HomeBloc _bloc;
 
   List<SectionListItem> contentItems = [];
+  List<Item> items = [];
 
   final List<SectionListItem> placeholders = [
     PlaceholderItem(
@@ -39,7 +43,7 @@ class _HomeBodyState extends State<HomeBody> {
       icon: 'assets/images/summary.png',
     ),
     PlaceholderItem(
-      key: 'experience',
+      key: 'experiences',
       title: 'Domain experience',
       icon: 'assets/images/experience.png',
     ),
@@ -72,6 +76,7 @@ class _HomeBodyState extends State<HomeBody> {
     _bloc.add(ScreenLoaded());
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       if (state is HomeSuccessResponse) {
+        items = state.items;
         contentItems = HomeMapper.map(response: state);
 
         final sections = _getSections();
@@ -91,7 +96,7 @@ class _HomeBodyState extends State<HomeBody> {
                 bgColor: Theme.of(context).scaffoldBackgroundColor,
                 trailingActions: [
                   IconButton(
-                    icon: Icon(Icons.logout),
+                    icon: Icon(Icons.power_settings_new),
                     color: Palette.cinnabar,
                     onPressed: () {
                       _bloc.add(Logout());
@@ -105,7 +110,6 @@ class _HomeBodyState extends State<HomeBody> {
                 child: Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
                       ProgressBar(
                         percent: contentItems.length / placeholders.length,
@@ -170,6 +174,16 @@ class _HomeBodyState extends State<HomeBody> {
   _onSectionCardTap(String key) {
     print(key);
     switch (key) {
+      case 'experiences':
+        final domainExpItem = items.firstWhere(
+            (element) => element.key == "experiences",
+            orElse: () => Item(key: 'experiences', value: []));
+        _navigateToCategory(
+          DomainExpProvider(
+            child: DomainExperienceScreen(item: domainExpItem),
+          ),
+        );
+        break;
       case 'skills':
         _navigateToCategory(CoreSkillsScreen());
         break;
@@ -184,7 +198,6 @@ class _HomeBodyState extends State<HomeBody> {
         break;
     }
   }
-
 
   _navigateToCategory(Widget widget) {
     Navigator.of(context)
