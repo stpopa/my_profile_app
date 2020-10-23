@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
 
-class BasicInput extends StatefulWidget {
+class TitleInput extends StatefulWidget {
   final String hintText;
   final String initialString;
   final bool shouldSelectAll;
   final ValueChanged<String> onChanged;
 
-  BasicInput({
+  TitleInput({
     this.hintText,
     this.onChanged,
     this.initialString,
@@ -15,10 +15,10 @@ class BasicInput extends StatefulWidget {
   });
 
   @override
-  _BasicInputState createState() => _BasicInputState();
+  _TitleInputState createState() => _TitleInputState();
 }
 
-class _BasicInputState extends State<BasicInput> {
+class _TitleInputState extends State<TitleInput> {
   TextEditingController _controller;
 
   @override
@@ -30,6 +30,7 @@ class _BasicInputState extends State<BasicInput> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      autocorrect: true,
       enableInteractiveSelection: true,
       keyboardType: TextInputType.text,
       maxLines: null,
@@ -38,14 +39,14 @@ class _BasicInputState extends State<BasicInput> {
       cursorColor: Palette.cinnabar,
       style: TextStyle(
         fontSize: 18,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.bold,
         color: Palette.black,
       ),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(0, 5, 0, 5),
         hintStyle: TextStyle(
           fontSize: 18,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.bold,
           color: Palette.gainsboro,
         ),
         hintMaxLines: 20,

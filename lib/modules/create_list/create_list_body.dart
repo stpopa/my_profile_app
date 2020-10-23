@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/common/components/profile_app_bar.dart';
 import 'bloc/bloc.dart';
-import 'package:endava_profile_app/common/components/basic_input.dart';
+import 'package:endava_profile_app/common/components/title_input.dart';
 import 'package:endava_profile_app/models/user.dart';
 import 'package:endava_profile_app/modules/search_user/search_user_screen.dart';
 import 'components/user_card.dart';
@@ -87,7 +87,7 @@ class _CreateListBodyState extends State<CreateListBody> {
                       color: Palette.darkGray,
                     ),
                     SizedBox(height: 10),
-                    BasicInput(
+                    TitleInput(
                       initialString: state.list.name,
                       hintText: "Name your list",
                       onChanged: (value) {

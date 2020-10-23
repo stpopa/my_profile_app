@@ -100,8 +100,8 @@ class _LoginFormState extends State<LoginForm> {
   void _onContinuePressed() {
     _loginBloc.add(
       FormSubmitted(
-        email: "stallone@mail.com", //_emailController.text,
-        password: "Rambo123" //_passwordController.text,
+        email: _emailController.text, //_emailController.text,
+        password: _passwordController.text //_passwordController.text,
       ),
     );
   }

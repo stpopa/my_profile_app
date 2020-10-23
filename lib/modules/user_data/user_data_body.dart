@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/bloc.dart';
 import 'package:endava_profile_app/common/components/profile_app_bar.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
-import 'package:endava_profile_app/common/components/basic_input.dart';
+import 'package:endava_profile_app/common/components/title_input.dart';
 
 class UserDataBody extends StatefulWidget {
   @override
@@ -69,7 +69,7 @@ class _UserDataBodyState extends State<UserDataBody> {
                         Icon(Icons.accessibility, size: 30),
                         SizedBox(width: 20),
                         Flexible(
-                          child: BasicInput(
+                          child: TitleInput(
                             initialString: state.user.name,
                             hintText: "Name and Surname",
                             onChanged: _onNameChanged,
@@ -84,7 +84,7 @@ class _UserDataBodyState extends State<UserDataBody> {
                         Icon(Icons.info, size: 30),
                         SizedBox(width: 20),
                         Flexible(
-                          child: BasicInput(
+                          child: TitleInput(
                             initialString: state.user.role,
                             hintText: "Role",
                             onChanged: _onRoleChanged,
@@ -99,7 +99,7 @@ class _UserDataBodyState extends State<UserDataBody> {
                         Icon(Icons.image, size: 30),
                         SizedBox(width: 20),
                         Flexible(
-                          child: BasicInput(
+                          child: TitleInput(
                             shouldSelectAll: true,
                             initialString: state.user.thumbnail,
                             hintText: "Link to your image",
