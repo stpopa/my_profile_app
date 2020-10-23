@@ -85,7 +85,7 @@ class _HomeBodyState extends State<HomeBody> {
           child: ViewListButton(
             onTap: () {
               Navigator.of(context)
-                  .pushNamed(AppRoute.of(AppScreen.your_lists));
+                  .pushNamed(AppRoute.of(AppScreen.yourLists));
             },
           ),
         );

@@ -115,7 +115,7 @@ class _YourListsBodyState extends State<YourListsBody> {
 
   _handleUserList(BuildContext context, {UserList userList}) {
     final result = Navigator.of(context).pushNamed(
-      AppRoute.of(AppScreen.create_list),
+      AppRoute.of(AppScreen.createList),
       arguments: userList == null ? null : userList.uniqKey,
     );
 

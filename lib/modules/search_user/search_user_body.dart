@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:endava_profile_app/common/components/basic_input.dart';
+import 'package:endava_profile_app/common/components/title_input.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/models/user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,7 +39,7 @@ class _SearchUserBodyState extends State<SearchUserBody> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Flexible(
-                          child: BasicInput(
+                          child: TitleInput(
                             hintText: "Search people",
                             onChanged: (searchString) {
                               _bloc.add(SearchStringChanged(searchString));

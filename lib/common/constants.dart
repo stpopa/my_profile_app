@@ -3,15 +3,15 @@ enum AppScreen {
   home,
   login,
   auth,
-  create_list,
+  createList,
   contributors,
-  user_data,
+  userData,
   summary,
   domainExperience,
   coreSkills,
   educationAndTraining,
   professionalExperience,
-  your_lists
+  yourLists
 }
 
 class AppRoute {
@@ -25,9 +25,9 @@ class AppRoute {
     AppScreen.coreSkills: '/coreSkills',
     AppScreen.educationAndTraining: '/educationAndTraining',
     AppScreen.professionalExperience: '/professionalExperience',
-    AppScreen.user_data: '/user_data',
-    AppScreen.create_list: '/create_list',
-    AppScreen.your_lists: '/your_lists',
+    AppScreen.userData: '/userData',
+    AppScreen.createList: '/createList',
+    AppScreen.yourLists: '/yourLists',
   };
 
   static String of(AppScreen screen) => _routes[screen];

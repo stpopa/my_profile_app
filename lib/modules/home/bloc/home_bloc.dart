@@ -20,7 +20,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
     if (event is SectionSelected) {
-      if (event.category == AppScreen.user_data)
+      if (event.category == AppScreen.userData)
         print(event.category);
     } else if (event is ScreenLoaded) {
       yield HomeLoading();
