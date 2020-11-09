@@ -6,10 +6,12 @@ class TitleInput extends StatefulWidget {
   final String initialString;
   final bool shouldSelectAll;
   final ValueChanged<String> onChanged;
+  final VoidCallback onEditingComplete;
 
   TitleInput({
     this.hintText,
     this.onChanged,
+    this.onEditingComplete,
     this.initialString,
     this.shouldSelectAll = false,
   });
@@ -35,6 +37,7 @@ class _TitleInputState extends State<TitleInput> {
       keyboardType: TextInputType.text,
       maxLines: null,
       controller: _controller,
+      onEditingComplete: widget.onEditingComplete,
       onChanged: widget.onChanged,
       cursorColor: Palette.cinnabar,
       style: TextStyle(

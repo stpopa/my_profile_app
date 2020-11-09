@@ -6,10 +6,12 @@ class BasicInput extends StatefulWidget {
   final String initialString;
   final bool shouldSelectAll;
   final ValueChanged<String> onChanged;
+  final VoidCallback onEditingComplete;
 
   BasicInput({
     this.hintText,
     this.onChanged,
+    this.onEditingComplete,
     this.initialString,
     this.shouldSelectAll = false,
   });
@@ -34,6 +36,7 @@ class _BasicInputState extends State<BasicInput> {
       keyboardType: TextInputType.text,
       maxLines: null,
       controller: _controller,
+      onEditingComplete: widget.onEditingComplete,
       onChanged: widget.onChanged,
       cursorColor: Palette.cinnabar,
       style: TextStyle(

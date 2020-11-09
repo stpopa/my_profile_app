@@ -24,6 +24,7 @@ dependencies:
   expandable: ^4.1.2
   shared_preferences: ^0.5.8
   share: ^0.6.5+2
+  reorderables: ^0.3.2
 
 dev_dependencies:
   flutter_test:
