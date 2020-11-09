@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 class ExpandableExample extends StatelessWidget {
   final String title;
   final Widget child;
+  final Icon icon;
 
-  const ExpandableExample({Key key, this.title, this.child}) : super(key: key);
+  const ExpandableExample({Key key, this.title, this.child, this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class ExpandableExample extends StatelessWidget {
             ),
             child: Row(
               children: <Widget>[
-                ImageIcon(
+                this.icon ?? ImageIcon(
                   AssetImage('assets/images/quote-icon.png'),
                   color: Palette.cinnabar,
                   size: 28,
