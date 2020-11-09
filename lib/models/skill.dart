@@ -8,20 +8,23 @@ class Skill {
   final String title;
   final String icon;
   final int level;
+  final bool selected;
 
   const Skill({
     this.id,
     this.title,
     this.icon,
     this.level,
+    this.selected
   });
 
-  Skill copyWith({int level}) {
+  Skill copyWith({int level, selected}) {
     return Skill(
       id: id,
       title: title,
       icon: icon,
       level: level ?? this.level,
+      selected: selected ?? this.selected,
     );
   }
 

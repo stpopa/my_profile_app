@@ -1,8 +1,10 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 import 'user.dart';
 
 part 'user_list.g.dart';
 
+@JsonSerializable(nullable: true)
 class UserList extends Equatable {
   final String name;
   final List<User> users;

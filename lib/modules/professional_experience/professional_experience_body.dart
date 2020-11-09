@@ -1,158 +1,157 @@
-import 'package:endava_profile_app/common/components/title_input.dart';
-import 'package:endava_profile_app/common/components/basic_input.dart';
+import 'package:endava_profile_app/models/project.dart';
+import 'package:endava_profile_app/models/skill.dart';
+import 'package:endava_profile_app/modules/professional_experience/bloc/bloc.dart';
+import 'package:endava_profile_app/modules/professional_experience/bloc/professional_experience_bloc.dart';
+import 'package:endava_profile_app/modules/professional_experience/bloc/professional_experience_state.dart';
 import 'package:flutter/material.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/common/components/profile_app_bar.dart';
 import 'package:endava_profile_app/common/components/expandable_example.dart';
-import 'package:endava_profile_app/common/constants/dimens.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'components/project_card.dart';
+import 'package:reorderables/reorderables.dart';
 
-class ProfessionalExperienceBody extends StatelessWidget {
+class ProfessionalExperienceBody extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        ProfileAppBar(
-          context: context,
-//          hasUnsavedChanges: state.hasUnsavedChanges,
-//          popPayload: state.hasChanges ? 'trigger_refresh' : null,
-          bgColor: Theme.of(context).scaffoldBackgroundColor,
-          customTitle: Text(
-            "Professional experience",
-            style: TextStyle(
-              color: Palette.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-          trailingActions: [],
-        ),
-        SliverToBoxAdapter(
-          child: Container(
-            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(height: 15),
-                Text(
-                  "Add all projects that you were involved in; follow the below format, in reverse chronological order.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Palette.darkGray,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 16,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: ExpandableExample(
-            title: "Example",
-            child: Text("this is the example"),
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Container(
-            padding: EdgeInsets.fromLTRB(
-                Dimens.spacingMedium, 20, Dimens.spacingMedium, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Project:",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                TitleInput(
-                  hintText:
-                      "Job Title, Project name, Client Name (month, year – month, year)",
-                ),
-                BasicInput(
-                  hintText:
-                      "Brief (2-3 line) project description including key business requirements and technologies. ",
-                ),
-                SizedBox(height: 15),
-                Text(
-                  "Responsibilities and achievements:",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                BasicInput(
-                  hintText:
-                      "Job Title, Project name, Client Name (month, year – month, year)",
-                ),
-                SizedBox(height: 15),
-                Text(
-                  "Programming languages:",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                Text(
-                  "tap to select:",
-                  style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 16,
-                      color: Palette.lightGray),
-                ),
-                SizedBox(height: 10),
-                Wrap(
-                  alignment: WrapAlignment.center,
-                  children: [
-                    ProgramingLanguageChip(language: "Java", level: "Beginner"),
-                    ProgramingLanguageChip(
-                        language: "Swift", level: "Advanced"),
-                    ProgramingLanguageChip(language: "Dart", level: "Advanced"),
-                    ProgramingLanguageChip(
-                        language: "Elixir", level: "Beginner"),
-                    ProgramingLanguageChip(
-                        language: "Javascript", level: "Beginner"),
-                  ],
-                ),
-                SizedBox(height: 10),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+  _ProfessionalExperienceBodyState createState() =>
+      _ProfessionalExperienceBodyState();
 }
 
-class ProgramingLanguageChip extends StatelessWidget {
-  final String language;
-  final String level;
+class _ProfessionalExperienceBodyState
+    extends State<ProfessionalExperienceBody> {
+  ProfessionalExperienceBloc _bloc;
+  List<Project> projects;
 
-  ProgramingLanguageChip({this.language, this.level});
+  @override
+  void initState() {
+    _bloc = BlocProvider.of<ProfessionalExperienceBloc>(context)
+      ..add(ScreenCreated());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(0, 0, 3, 3),
-      child: Chip(
-        label: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
-          child: Column(
-            children: [
-              Text(
-                language,
+    return BlocBuilder<ProfessionalExperienceBloc, ProfessionalExperienceState>(
+        builder: (context, state) {
+      if (state is ReceivedProjectList) {
+        if (projects == null) projects = state.projects;
+
+        return CustomScrollView(
+          slivers: [
+            ProfileAppBar(
+              context: context,
+              hasUnsavedChanges: state.hasUnsavedChanges,
+              popPayload: state.hasChanges ? 'trigger_refresh' : null,
+              bgColor: Theme.of(context).scaffoldBackgroundColor,
+              customTitle: Text(
+                "Professional experience",
                 style: TextStyle(
-                  fontSize: 16,
+                  color: Palette.black,
                   fontWeight: FontWeight.bold,
+                  fontSize: 20,
                 ),
               ),
-              Text(level),
-            ],
+              trailingActions: [],
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(height: 15),
+                    Text(
+                      "Add all projects that you were involved in; follow the below format, in reverse chronological order.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Palette.darkGray,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: ExpandableExample(
+                title: "Example",
+                child: Text("this is the example"),
+              ),
+            ),
+            ReorderableSliverList(
+              delegate: ReorderableSliverChildBuilderDelegate(
+                (context, index) {
+                  return ProjectCard(
+                    key: ValueKey(projects[index]),
+                    project: projects[index],
+                    onChanged: (project) {
+                      setState(() {
+                        final oldProject = projects.removeAt(index);
+                        projects.insert(
+                            index, oldProject.updateWith(newProject: project));
+                      });
+
+                      _bloc.add(ChangesWereMade(projects));
+                    },
+                    onNewSkills: (skills) {
+                      setState(() {
+                        final oldProject = projects.removeAt(index);
+                        projects.insert(
+                            index, oldProject.copyWith(skills: skills));
+                      });
+
+                      _bloc.add(ChangesWereMade(projects));
+                    },
+                    onEvent: (event) {
+                      switch (event) {
+                        case ProjectCardEvent.moveUp:
+                          _moveUp(index);
+                          break;
+                        case ProjectCardEvent.moveDown:
+                          _moveDown(index);
+                          break;
+                        case ProjectCardEvent.delete:
+                          setState(() {
+                            projects.removeAt(index);
+                          });
+                          break;
+                      }
+
+                      _bloc.add(ChangesWereMade(projects));
+                    },
+                  );
+                },
+                childCount: state.projects.length,
+              ),
+              onReorder: _reorder,
+            ),
+          ],
+        );
+      } else {
+        return Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation(Palette.cinnabar),
+            strokeWidth: 6,
           ),
-        ),
-      ),
-    );
+        );
+      }
+    });
+  }
+
+  _moveDown(int index) {
+    if (index < projects.length) _reorder(index, index + 1);
+  }
+
+  _moveUp(int index) {
+    if (index > 0) _reorder(index, index - 1);
+  }
+
+  _reorder(int oldIndex, int newIndex) {
+    setState(() {
+      final project = projects.removeAt(oldIndex);
+      projects.insert(newIndex, project);
+    });
   }
 }

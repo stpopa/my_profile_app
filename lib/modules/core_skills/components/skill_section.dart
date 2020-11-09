@@ -1,5 +1,5 @@
 import 'package:endava_profile_app/common/constants/dimens.dart';
-import 'package:endava_profile_app/modules/core_skills/models/skill.dart';
+import 'package:endava_profile_app/models/skill.dart';
 import 'package:endava_profile_app/modules/core_skills/models/skill_category.dart';
 import 'package:flutter/material.dart';
 import 'package:endava_profile_app/common/components/add_button.dart';
