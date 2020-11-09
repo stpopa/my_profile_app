@@ -76,8 +76,9 @@ class _ProfessionalExperienceBodyState
             ),
             SliverToBoxAdapter(
               child: ExpandableExample(
-                title: "Example",
-                child: Text("this is the example"),
+                icon: Icon(Icons.lightbulb_outline, size: 30, color: Palette.cinnabar,),
+                title: "Useful tips",
+                child: Text("You can reorder your projects by either, long pressing to start dragging, or the menu \"move up/down\", options"),
               ),
             ),
             ReorderableSliverList(
