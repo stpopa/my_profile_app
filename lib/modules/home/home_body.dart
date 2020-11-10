@@ -11,6 +11,7 @@ import 'package:endava_profile_app/modules/home/components/view_list_button.dart
 import 'package:endava_profile_app/modules/home/models/section_list_item.dart';
 import 'package:endava_profile_app/modules/summary/summary_screen.dart';
 import 'package:endava_profile_app/modules/user_data/user_data_screen.dart';
+import 'package:endava_profile_app/modules/professional_experience/professional_experience_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:endava_profile_app/common/constants.dart';
@@ -168,8 +169,7 @@ class _HomeBodyState extends State<HomeBody> {
           (item) => item.key == placeholder.key,
           orElse: () => placeholder,
         ),
-      )
-      .toList();
+      ).toList();
 
   _onSectionCardTap(String key) {
     print(key);
@@ -193,8 +193,8 @@ class _HomeBodyState extends State<HomeBody> {
       case 'user':
         _navigateTo(UserDataScreen());
         break;
-      case 'user':
-        _navigateTo(UserDataScreen());
+      case 'portfolio':
+        _navigateTo(ProfessionalExperienceScreen());
         break;
     }
   }

@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'skill.g.dart';
 
 @JsonSerializable()
-class Skill {
+class Skill extends Equatable {
   final int id;
   final String title;
   final String icon;
@@ -31,4 +32,7 @@ class Skill {
   factory Skill.fromJson(Map<String, dynamic> json) => _$SkillFromJson(json);
 
   Map<String, dynamic> toJson() => _$SkillToJson(this);
+
+  @override
+  List<Object> get props => [this.id, this.selected, this.title, this.level];
 }

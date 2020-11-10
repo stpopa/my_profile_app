@@ -7,7 +7,7 @@ import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/models/project.dart';
 import 'package:endava_profile_app/models/skill.dart';
 
-enum ProjectCardEvent { addAbove, addBelow, moveUp, moveDown, delete }
+enum ProjectCardEvent { moveUp, moveDown, delete }
 
 class ProjectCard extends StatefulWidget {
   final Key key;
@@ -22,7 +22,7 @@ class ProjectCard extends StatefulWidget {
     this.onEvent,
     this.onChanged,
     this.onNewSkills,
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
   _ProjectCardState createState() => _ProjectCardState(project);
@@ -41,8 +41,7 @@ class _ProjectCardState extends State<ProjectCard> {
   };
 
   _onEditingComplete() {
-    if (widget.onChanged != null)
-      widget.onChanged(_project);
+    if (widget.onChanged != null) widget.onChanged(_project);
   }
 
   @override
@@ -90,7 +89,7 @@ class _ProjectCardState extends State<ProjectCard> {
           TitleInput(
             initialString: _project.title,
             hintText:
-            "Job Title, Project name, Client Name (month, year – month, year)",
+                "Job Title, Project name, Client Name (month, year – month, year)",
             onChanged: (value) {
               setState(() {
                 _project = _project.copyWith(title: value);
@@ -101,7 +100,7 @@ class _ProjectCardState extends State<ProjectCard> {
           BasicInput(
             initialString: _project.description,
             hintText:
-            "Brief (2-3 line) project description including key business requirements and technologies. ",
+                "Brief (2-3 line) project description including key business requirements and technologies. ",
             onChanged: (value) {
               setState(() {
                 _project = _project.copyWith(description: value);
@@ -120,7 +119,7 @@ class _ProjectCardState extends State<ProjectCard> {
           BasicInput(
             initialString: widget.project.responsibilities,
             hintText:
-            "Job Title, Project name, Client Name (month, year – month, year)",
+                "Job Title, Project name, Client Name (month, year – month, year)",
             onChanged: (value) {
               setState(() {
                 _project = _project.copyWith(responsibilities: value);
@@ -160,8 +159,21 @@ class _ProjectCardState extends State<ProjectCard> {
   }
 
   List<Widget> _generateSkills() {
-    final List fixedList = Iterable<int>.generate(_project.skills.length)
-        .toList();
+    if (_project.skills == null || _project.skills == []) {
+      return [
+        Text(
+          "You do not have any skills. Go back to skills page and add them.",
+          style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Palette.darkGray,
+          ),
+        ),
+      ];
+    }
+
+    final List fixedList =
+        Iterable<int>.generate(_project.skills.length).toList();
 
     return fixedList.map((index) {
       Skill skill = _project.skills[index];
@@ -173,8 +185,8 @@ class _ProjectCardState extends State<ProjectCard> {
         selectionChanged: (selected) {
           setState(() {
             final oldSkill = _project.skills.removeAt(index);
-            _project.skills.insert(
-                index, oldSkill.copyWith(selected: selected));
+            _project.skills
+                .insert(index, oldSkill.copyWith(selected: selected));
           });
 
           widget.onNewSkills(widget.project.skills);

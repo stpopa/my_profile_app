@@ -1,9 +1,12 @@
+import 'package:endava_profile_app/models/project.dart';
 import 'package:endava_profile_app/modules/core_skills/models/skill_category.dart';
 
 import 'bloc/bloc.dart';
 import 'models/content_item.dart';
 import 'models/home_category.dart';
 import 'models/section_list_item.dart';
+
+import 'dart:convert' as convert;
 
 class HomeMapper {
   static List<SectionListItem> map({HomeSuccessResponse response}) {
@@ -87,8 +90,11 @@ class HomeMapper {
             break;
 
           case HomeCategory.portfolio:
-          // Map to created models...
-            String value = item.value['portfolio'];
+            // Map to created models...
+            List<Project> projects = Project.createListFrom(convert.json.decode(item.value));
+
+            final defaultTile = "Untitled project";
+            String value = projects.map((project) => project.title ?? defaultTile).join(', ');
             contentItems.add(
               PortfolioItem(
                 key: HomeCategoryData.keyFor(category),

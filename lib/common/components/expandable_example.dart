@@ -10,7 +10,8 @@ class ExpandableExample extends StatelessWidget {
   final Widget child;
   final Icon icon;
 
-  const ExpandableExample({Key key, this.title, this.child, this.icon}) : super(key: key);
+  const ExpandableExample({Key key, this.title, this.child, this.icon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +33,12 @@ class ExpandableExample extends StatelessWidget {
             ),
             child: Row(
               children: <Widget>[
-                this.icon ?? ImageIcon(
-                  AssetImage('assets/images/quote-icon.png'),
-                  color: Palette.cinnabar,
-                  size: 28,
-                ),
+                this.icon ??
+                    ImageIcon(
+                      AssetImage('assets/images/quote-icon.png'),
+                      color: Palette.cinnabar,
+                      size: 28,
+                    ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(
                     Dimens.spacingMedium,
@@ -69,14 +71,18 @@ class ExpandableExample extends StatelessWidget {
             iconColor: Palette.cinnabar,
           ),
           expanded: Padding(
-            padding: const EdgeInsets.fromLTRB(Dimens.spacingXHuge, 0.0,
-                Dimens.spacingXSmall, Dimens.spacingLarge),
+            padding: const EdgeInsets.fromLTRB(
+              Dimens.spacingXHuge,
+              0.0,
+              Dimens.spacingXHuge,
+              Dimens.spacingLarge,
+            ),
             child: child,
           ),
         ),
         Container(
-          margin:
-              EdgeInsets.fromLTRB(Dimens.spacingMedium, 0, Dimens.spacingMedium, 0),
+          margin: EdgeInsets.fromLTRB(
+              Dimens.spacingMedium, 0, Dimens.spacingMedium, 0),
           height: 1,
           color: Palette.darkGray.withAlpha(180),
         ),

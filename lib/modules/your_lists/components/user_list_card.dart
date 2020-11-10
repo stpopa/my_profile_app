@@ -23,7 +23,7 @@ class UserListCard extends StatelessWidget {
         Stack(
           children: [
             Positioned(
-              top: 0,
+              top: 5,
               right: 0,
               child: Container(
                 padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -37,7 +37,7 @@ class UserListCard extends StatelessWidget {
                     onPressed: onTapDelete,
                   ),
                 ),
-                height: 72,
+                height: 62,
                 width: 80,
                 decoration: BoxDecoration(
                     color: Palette.cinnabar,
@@ -48,8 +48,8 @@ class UserListCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 0,
-              left: -20,
+              top: 5,
+              left: -25,
               child: Container(
                 padding: EdgeInsets.fromLTRB(13, 0, 0, 0),
                 child: Material(
@@ -62,7 +62,7 @@ class UserListCard extends StatelessWidget {
                     onPressed: onTapShare,
                   ),
                 ),
-                height: 72,
+                height: 62,
                 width: 80,
                 decoration: BoxDecoration(
                   color: Palette.rottenTomato,

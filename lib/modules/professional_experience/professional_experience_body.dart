@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:endava_profile_app/common/components/sliver_add_button.dart';
 import 'package:endava_profile_app/models/project.dart';
 import 'package:endava_profile_app/models/skill.dart';
 import 'package:endava_profile_app/modules/professional_experience/bloc/bloc.dart';
@@ -34,7 +36,7 @@ class _ProfessionalExperienceBodyState
     return BlocBuilder<ProfessionalExperienceBloc, ProfessionalExperienceState>(
         builder: (context, state) {
       if (state is ReceivedProjectList) {
-        if (projects == null) projects = state.projects;
+        if (projects != state.projects) projects = state.projects;
 
         return CustomScrollView(
           slivers: [
@@ -43,15 +45,27 @@ class _ProfessionalExperienceBodyState
               hasUnsavedChanges: state.hasUnsavedChanges,
               popPayload: state.hasChanges ? 'trigger_refresh' : null,
               bgColor: Theme.of(context).scaffoldBackgroundColor,
-              customTitle: Text(
+              customTitle: AutoSizeText(
                 "Professional experience",
+                maxFontSize: 20,
+                maxLines: 1,
                 style: TextStyle(
                   color: Palette.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontWeight: FontWeight.bold
                 ),
               ),
-              trailingActions: [],
+              onSave: () {
+                _bloc.add(SaveChanges(projects));
+              },
+              trailingActions: [
+                IconButton(
+                  icon: Icon(Icons.save),
+                  color: Palette.cinnabar,
+                  onPressed: () {
+                    _bloc.add(SaveChanges(projects));
+                  },
+                ),
+              ],
             ),
             SliverToBoxAdapter(
               child: Container(
@@ -62,7 +76,7 @@ class _ProfessionalExperienceBodyState
                   children: [
                     SizedBox(height: 15),
                     Text(
-                      "Add all projects that you were involved in; follow the below format, in reverse chronological order.",
+                      "Add all projects that you were involved in; follow the below format, in reverse chronological order (oldest on bottom).",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Palette.darkGray,
@@ -76,7 +90,11 @@ class _ProfessionalExperienceBodyState
             ),
             SliverToBoxAdapter(
               child: ExpandableExample(
-                icon: Icon(Icons.lightbulb_outline, size: 30, color: Palette.cinnabar,),
+                icon: Icon(
+                  Icons.lightbulb_outline,
+                  size: 30,
+                  color: Palette.cinnabar,
+                ),
                 title: "Useful tips",
                 child: Text("You can reorder your projects by either, long pressing to start dragging, or the menu \"move up/down\", options"),
               ),
@@ -124,9 +142,16 @@ class _ProfessionalExperienceBodyState
                     },
                   );
                 },
-                childCount: state.projects.length,
+                childCount: projects.length,
               ),
               onReorder: _reorder,
+            ),
+            SliverAddButton(
+              padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+              title: "Add new project",
+              onTap: () {
+                _bloc.add(AddNewProject());
+              },
             ),
           ],
         );
@@ -142,7 +167,7 @@ class _ProfessionalExperienceBodyState
   }
 
   _moveDown(int index) {
-    if (index < projects.length) _reorder(index, index + 1);
+    if (projects != null && index < projects.length) _reorder(index, index + 1);
   }
 
   _moveUp(int index) {
@@ -154,5 +179,7 @@ class _ProfessionalExperienceBodyState
       final project = projects.removeAt(oldIndex);
       projects.insert(newIndex, project);
     });
+
+    _bloc.add(ChangesWereMade(projects));
   }
 }

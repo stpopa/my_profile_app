@@ -17,7 +17,7 @@ class Button extends StatelessWidget {
         child: Text(
           label,
           style:
-              Theme.of(context).textTheme.body1.copyWith(color: Colors.white),
+              Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.white),
         ),
       ),
       color: Theme.of(context).accentColor,

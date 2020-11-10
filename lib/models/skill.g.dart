@@ -12,6 +12,7 @@ Skill _$SkillFromJson(Map<String, dynamic> json) {
     title: json['title'] as String,
     icon: json['icon'] as String,
     level: json['level'] as int,
+    selected: json['selected'] as bool,
   );
 }
 
@@ -20,4 +21,5 @@ Map<String, dynamic> _$SkillToJson(Skill instance) => <String, dynamic>{
       'title': instance.title,
       'icon': instance.icon,
       'level': instance.level,
+      'selected': instance.selected,
     };

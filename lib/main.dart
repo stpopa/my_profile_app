@@ -28,9 +28,9 @@ class EndavaProfileApp extends StatelessWidget {
     return MaterialApp(
         title: 'Endava Profile',
         routes: {
-//          AppRoute.of(AppScreen.login): (c) => LoginScreen(),
-//          AppRoute.of(AppScreen.home): (c) => HomeScreen(),
-//          AppRoute.of(AppScreen.auth): (c) => AuthenticationScreen(),
+         AppRoute.of(AppScreen.login): (c) => LoginScreen(),
+         AppRoute.of(AppScreen.home): (c) => HomeScreen(),
+         AppRoute.of(AppScreen.auth): (c) => AuthenticationScreen(),
           AppRoute.of(AppScreen.contributors): (c) =>
               ContributorsScreen(repository: 'stpopa/endava_profile_app'),
           AppRoute.of(AppScreen.coreSkills): (c) => CoreSkillsScreen(),
