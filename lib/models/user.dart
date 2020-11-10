@@ -25,7 +25,16 @@ class User extends Equatable {
     this.selected = false,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) {
+    // Map from user_sample
+    if (json['user'] != null) {
+      json['user']['selected'] = json['selected'];
+
+      return _$UserFromJson(json['user']);
+    }
+
+    return _$UserFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
@@ -33,6 +42,7 @@ class User extends Equatable {
   List<Object> get props => [uniqKey, selected];
 
   bool get isModerator => accountType == 'moderator';
+
 
   User copy() {
     return User.fromJson(this.toJson());

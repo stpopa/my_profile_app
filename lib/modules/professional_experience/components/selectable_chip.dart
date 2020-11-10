@@ -18,7 +18,7 @@ class _SelectableChipState extends State<SelectableChip> {
 
   @override
   void initState() {
-    _isSelected = widget.selected;
+    _isSelected = widget.selected ?? false;
 
     super.initState();
   }

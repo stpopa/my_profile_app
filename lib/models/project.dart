@@ -36,6 +36,16 @@ class Project extends Equatable {
 
   Map<String, dynamic> toJson() => _$ProjectToJson(this);
 
+  static List<Project> createListFrom(List<dynamic> elements) {
+    List<Project> projects = [];
+
+    elements.forEach((element) {
+      projects.add(Project.fromJson(element));
+    });
+
+    return projects;
+  }
+
   @override
   List<Object> get props =>
       [this.title, this.description, this.responsibilities, this.skills];

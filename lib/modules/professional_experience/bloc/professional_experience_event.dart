@@ -18,4 +18,10 @@ class ChangesWereMade extends ProfessionalExperienceEvent {
   ChangesWereMade(this.projects);
 }
 
-class SaveChanges extends ProfessionalExperienceEvent {}
+class AddNewProject extends ProfessionalExperienceEvent {}
+
+class SaveChanges extends ProfessionalExperienceEvent {
+  final List<Project> projects;
+
+  SaveChanges(this.projects);
+}

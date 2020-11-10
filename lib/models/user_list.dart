@@ -9,6 +9,7 @@ class UserList extends Equatable {
   final String name;
   final List<User> users;
 
+  @JsonKey(name: 'uniq_key')
   final String uniqKey;
 
   UserList({this.name, this.uniqKey, this.users});
