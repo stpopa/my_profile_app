@@ -26,6 +26,15 @@ class SkillsItem implements SectionListItem {
   SkillsItem({this.key, this.skills, this.title, this.icon});
 }
 
+class DomainExperienceItem implements SectionListItem {
+  String key;
+  final String title;
+  final String icon;
+  final String value;
+
+  DomainExperienceItem({this.key, this.title, this.icon, this.value});
+}
+
 class PortfolioItem implements SectionListItem {
   String key;
   final String title;

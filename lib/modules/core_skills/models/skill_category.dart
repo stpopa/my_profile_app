@@ -1,4 +1,4 @@
-import 'package:endava_profile_app/modules/core_skills/models/skill.dart';
+import 'package:endava_profile_app/models/skill.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'skill_category.g.dart';

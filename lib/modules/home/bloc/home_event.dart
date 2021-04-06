@@ -24,6 +24,8 @@ class SectionSelected extends HomeEvent {
 
 class ScreenLoaded extends HomeEvent {}
 
+class Logout extends HomeEvent {}
+
 class Reload extends HomeEvent {
   final Item item;
 

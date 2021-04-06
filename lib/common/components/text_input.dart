@@ -7,6 +7,7 @@ class TextInput extends StatelessWidget {
   final TextInputType keyboardType;
   final String Function(dynamic) validator;
   final bool autovalidate;
+  final String initialValue;
 
   TextInput({
     @required this.hintText,
@@ -15,10 +16,12 @@ class TextInput extends StatelessWidget {
     this.controller,
     this.validator,
     this.autovalidate = false,
+    this.initialValue = ""
   });
 
   @override
   Widget build(BuildContext context) {
+    controller.value = TextEditingValue(text: initialValue);
     return TextFormField(
       controller: controller,
       style: TextStyle(
@@ -27,7 +30,7 @@ class TextInput extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: Theme.of(context).textTheme.subhead,
+        hintStyle: Theme.of(context).textTheme.subtitle1,
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
             color: Theme.of(context).primaryColorLight,

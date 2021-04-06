@@ -10,9 +10,7 @@ import 'skills_event.dart';
 import 'skills_state.dart';
 
 class SkillsBloc extends Bloc<SkillsEvent, SkillsState> {
-  final SkillsService skillsService;
-
-  SkillsBloc(this.skillsService);
+  final SkillsService skillsService = SkillsService();
 
   @override
   SkillsState get initialState => Loading();

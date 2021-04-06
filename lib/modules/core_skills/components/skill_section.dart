@@ -1,8 +1,8 @@
 import 'package:endava_profile_app/common/constants/dimens.dart';
-import 'package:endava_profile_app/modules/core_skills/components/add_button.dart';
-import 'package:endava_profile_app/modules/core_skills/models/skill.dart';
+import 'package:endava_profile_app/models/skill.dart';
 import 'package:endava_profile_app/modules/core_skills/models/skill_category.dart';
 import 'package:flutter/material.dart';
+import 'package:endava_profile_app/common/components/add_button.dart';
 
 import 'skill_card.dart';
 
@@ -29,10 +29,7 @@ class _SkillSectionState extends State<SkillSection> {
           _buildHeader(context),
         ],
         ...widget.category.skills.map(_buildContent),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: Dimens.spacingXSmall),
-          child: AddButton(),
-        ),
+        AddButton(title: 'Add new', onTap: (){},),
       ],
     );
   }
@@ -51,7 +48,7 @@ class _SkillSectionState extends State<SkillSection> {
             widget.category.title,
             style: Theme.of(context)
                 .textTheme
-                .title
+                .headline6
                 .copyWith(fontWeight: FontWeight.w600),
           ),
           SizedBox(height: Dimens.spacingXSmall),

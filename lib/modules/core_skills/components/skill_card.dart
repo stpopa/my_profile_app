@@ -2,7 +2,7 @@ import 'package:endava_profile_app/common/constants/dimens.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/modules/common/components/slider/level_slider.dart';
 import 'package:endava_profile_app/modules/core_skills/bloc/bloc.dart';
-import 'package:endava_profile_app/modules/core_skills/models/skill.dart';
+import 'package:endava_profile_app/models/skill.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -72,7 +72,7 @@ class _SkillCardState extends State<SkillCard> {
                               widget.skill.title,
                               style: Theme.of(context)
                                   .textTheme
-                                  .title
+                                  .headline6
                                   .copyWith(fontWeight: FontWeight.bold),
                             ),
                           ),
