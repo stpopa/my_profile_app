@@ -4,6 +4,7 @@ import 'package:endava_profile_app/common/constants/dimens.dart';
 import 'package:endava_profile_app/common/constants/palette.dart';
 import 'package:endava_profile_app/models/item.dart';
 import 'package:endava_profile_app/modules/core_skills/core_skills_screen.dart';
+import 'package:endava_profile_app/modules/education/education_training_screen.dart';
 import 'package:endava_profile_app/modules/domain_exp/bloc/domain_exp_provider.dart';
 import 'package:endava_profile_app/modules/domain_exp/domain_exp_screen.dart';
 import 'package:endava_profile_app/modules/home/components/progress_bar.dart';
@@ -189,6 +190,9 @@ class _HomeBodyState extends State<HomeBody> {
         break;
       case 'summary':
         _navigateToCategory(SummaryScreen());
+        break;
+      case 'education':
+        _navigateToCategory(EducationTrainingScreen());
         break;
       case 'user':
         _navigateTo(UserDataScreen());
